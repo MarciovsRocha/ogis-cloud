@@ -18,7 +18,7 @@ export default function Privacidade() {
       <div>
         <h2>1. Dados que coletamos</h2>
         <p>
-          Coletamos apenas os dados que você nos fornece ao solicitar uma auditoria ou orçamento —
+          Coletamos apenas os dados que você nos fornece ao solicitar um orçamento ou entrar em contato —
           como nome, empresa, WhatsApp, e-mail e informações sobre o seu negócio — e dados técnicos
           básicos de navegação para melhorar o site.
         </p>
@@ -51,8 +51,8 @@ export default function Privacidade() {
       <div>
         <h2>5. Segurança</h2>
         <p>
-          Adotamos medidas técnicas e organizacionais para proteger seus dados, incluindo backups
-          testados e acesso restrito às informações.
+          Adotamos medidas técnicas e organizacionais para proteger seus dados, incluindo acesso
+          restrito às informações e ao ambiente onde o seu negócio está hospedado.
         </p>
       </div>
     </LegalLayout>

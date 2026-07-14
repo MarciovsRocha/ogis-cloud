@@ -31,12 +31,12 @@ export default function Navbar() {
 
         <div className="flex items-center gap-1.5">
           <a
-            href={linkWhatsApp(MSG.auditoria)}
+            href={linkWhatsApp(MSG.contato)}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden cursor-pointer rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-content transition-transform duration-200 hover:-translate-y-0.5 sm:inline-block"
           >
-            Auditoria grátis
+            Fale com a gente
           </a>
 
           <button
@@ -67,13 +67,13 @@ export default function Navbar() {
             ))}
           </ul>
           <a
-            href={linkWhatsApp(MSG.auditoria)}
+            href={linkWhatsApp(MSG.contato)}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
             className="mt-1 block cursor-pointer rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-content"
           >
-            Auditoria grátis
+            Fale com a gente
           </a>
         </div>
       )}

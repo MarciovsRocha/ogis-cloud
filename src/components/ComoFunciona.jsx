@@ -1,4 +1,4 @@
-import { UserCheck, Wallet, ShieldCheck, Sparkles } from "lucide-react";
+import { UserCheck, Wallet, TrendingUp, Sparkles } from "lucide-react";
 import SectionHeading from "./SectionHeading.jsx";
 
 const PILARES = [
@@ -15,10 +15,10 @@ const PILARES = [
       "Previsível e sem surpresa: hospedagem, manutenção, atualizações e suporte entram no mesmo valor todo mês.",
   },
   {
-    icon: ShieldCheck,
-    titulo: "Seus dados com cópia diária testada",
+    icon: TrendingUp,
+    titulo: "Cresce com o seu negócio",
     texto:
-      "Fazemos backup do seu negócio todo dia e testamos a recuperação todo mês. Se algo acontecer, você não perde nada.",
+      "Começa simples e escala quando você precisar — do site à gestão completa — sem trocar de fornecedor no meio do caminho.",
   },
   {
     icon: Sparkles,

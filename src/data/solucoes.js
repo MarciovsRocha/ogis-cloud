@@ -10,7 +10,7 @@ export const SOLUCOES = [
     itens: [
       "Landing page que converte visita em contato",
       "Domínio próprio gerenciado (sempre no seu nome)",
-      "2 caixas de e-mail profissional (@suaempresa)",
+      "E-mail profissional @suaempresa no Google Workspace",
     ],
   },
   {
@@ -19,7 +19,7 @@ export const SOLUCOES = [
     resumo: "Site institucional completo, sempre no ar e atualizado.",
     itens: [
       "Site completo com as páginas do seu negócio",
-      "5 caixas de e-mail profissional",
+      "E-mail profissional no Google Workspace",
       "Manutenção mensal e pequenas alterações inclusas",
     ],
   },

@@ -5,7 +5,7 @@ import ComoFunciona from "../components/ComoFunciona.jsx";
 import Planos from "../components/Planos.jsx";
 import ParaQuem from "../components/ParaQuem.jsx";
 import Confianca from "../components/Confianca.jsx";
-import CTAAuditoria from "../components/CTAAuditoria.jsx";
+import CTAFinal from "../components/CTAFinal.jsx";
 import Contato from "../components/Contato.jsx";
 
 export default function LandingPage() {
@@ -18,7 +18,7 @@ export default function LandingPage() {
       <Planos />
       <ParaQuem />
       <Confianca />
-      <CTAAuditoria />
+      <CTAFinal />
       <Contato />
     </>
   );

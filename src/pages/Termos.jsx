@@ -28,7 +28,7 @@ export default function Termos() {
         <h2>2. Mensalidade e sustentação</h2>
         <p>
           Todo projeto entregue possui um plano de sustentação mensal, que inclui hospedagem,
-          monitoramento, backups, atualizações de segurança e um volume de ajustes acordado. A
+          monitoramento, atualizações de segurança e um volume de ajustes acordado. A
           mensalidade é cobrada de forma recorrente. Não há fidelidade obrigatória.
         </p>
       </div>
@@ -37,7 +37,7 @@ export default function Termos() {
         <h2>3. Domínio e propriedade</h2>
         <p>
           O domínio é sempre registrado em nome do cliente. Os dados e o conteúdo do negócio pertencem
-          ao cliente, que pode solicitar a migração a qualquer momento, com apoio de até 30 dias.
+          ao cliente, que pode solicitar a migração a qualquer momento, com o nosso apoio.
         </p>
       </div>
 

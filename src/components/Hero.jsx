@@ -1,7 +1,7 @@
 import { Mail, ArrowRight, MapPin } from "lucide-react";
 import { linkWhatsApp, linkEmail, MSG, ASSUNTO } from "../config.js";
 
-const TRUST = ["1º mês grátis", "Sem fidelidade", "Domínio sempre no seu nome"];
+const TRUST = ["Sem fidelidade", "Domínio sempre no seu nome", "Tudo em um só lugar"];
 
 export default function Hero() {
   return (
@@ -31,20 +31,20 @@ export default function Hero() {
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href={linkWhatsApp(MSG.auditoria)}
+              href={linkWhatsApp(MSG.contato)}
               target="_blank"
               rel="noopener noreferrer"
               className="glow-gold inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-base font-semibold text-primary-content transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto"
             >
-              Auditoria no WhatsApp
+              Falar no WhatsApp
               <ArrowRight className="h-4.5 w-4.5" />
             </a>
             <a
-              href={linkEmail(ASSUNTO.auditoria, MSG.auditoria)}
+              href={linkEmail(ASSUNTO.contato, MSG.contato)}
               className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-neutral-content/20 px-6 py-3.5 text-base font-semibold text-neutral-content transition-colors duration-200 hover:bg-neutral-content/10 sm:w-auto"
             >
               <Mail className="h-5 w-5" />
-              Pedir por e-mail
+              Falar por e-mail
             </a>
           </div>
 

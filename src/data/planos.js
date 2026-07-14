@@ -10,7 +10,7 @@ export const PLANOS = [
     beneficios: [
       "Landing page profissional",
       "Domínio gerenciado no seu nome",
-      "2 caixas de e-mail profissional",
+      "E-mail profissional (Google Workspace)",
       "Manutenção e monitoramento básicos",
     ],
     cta: "Quero começar",
@@ -24,7 +24,7 @@ export const PLANOS = [
     resumo: "O combo completo para quem quer presença séria e sem dor de cabeça.",
     beneficios: [
       "Site institucional completo",
-      "5 caixas de e-mail profissional",
+      "E-mail profissional (Google Workspace)",
       "Domínio gerenciado no seu nome",
       "Manutenção mensal completa",
       "Ajustes e melhorias inclusos",
@@ -43,7 +43,7 @@ export const PLANOS = [
       "Software sob medida para o seu processo",
       "Site + e-mail incluídos",
       "Sustentação completa e suporte dedicado",
-      "Backups diários testados",
+      "Monitoramento 24/7 com alertas",
       "Um único responsável por tudo",
     ],
     cta: "Solicitar orçamento",
@@ -51,9 +51,9 @@ export const PLANOS = [
   },
 ];
 
-// Redutores de risco exibidos abaixo dos planos (§5.1).
+// Redutores de risco exibidos abaixo dos planos.
 export const GARANTIAS = [
-  "Primeiro mês de mensalidade grátis",
   "Sem fidelidade",
-  "Migração garantida em até 30 dias",
+  "Sustentação inclusa em todo projeto",
+  "Suporte direto com quem desenvolve",
 ];

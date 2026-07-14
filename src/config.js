@@ -41,15 +41,12 @@ export function linkEmail(assunto, corpo) {
 // ---------------------------------------------------------------------------
 
 export const MSG = {
-  auditoria:
-    "Olá! Vim pelo site da ogis.cloud e quero uma auditoria gratuita da minha presença digital.",
   contato: "Olá! Vim pelo site da ogis.cloud e quero conversar sobre o meu negócio.",
   plano: (nome) =>
     `Olá! Vim pelo site da ogis.cloud e tenho interesse no plano "${nome}". Podemos conversar?`,
 };
 
 export const ASSUNTO = {
-  auditoria: "Auditoria gratuita — ogis.cloud",
   contato: "Contato — ogis.cloud",
   plano: (nome) => `Interesse no plano ${nome} — ogis.cloud`,
 };

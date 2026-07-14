@@ -1,4 +1,4 @@
-import { KeyRound, DatabaseBackup, Unlink, MoveRight } from "lucide-react";
+import { KeyRound, FileCheck2, Unlink } from "lucide-react";
 
 const SINAIS = [
   {
@@ -7,19 +7,15 @@ const SINAIS = [
     texto: "O endereço do seu negócio é sempre registrado no seu CPF/CNPJ. Você é o dono, não nós.",
   },
   {
-    icon: DatabaseBackup,
-    titulo: "Backup 3-2-1 testado",
-    texto: "Cópias em locais diferentes, com teste de recuperação todo mês. Seus dados não somem.",
+    icon: FileCheck2,
+    titulo: "Escopo definido por escrito",
+    texto:
+      "Você aprova por escrito o que será entregue, com prazo e preço combinados. Sem surpresa no meio do caminho.",
   },
   {
     icon: Unlink,
     titulo: "Sem fidelidade",
     texto: "Você fica porque quer. Sem multa, sem letras miúdas prendendo o seu negócio.",
-  },
-  {
-    icon: MoveRight,
-    titulo: "Migração em 30 dias",
-    texto: "Quer sair? Entregamos tudo organizado para migrar em até 30 dias, sem reféns.",
   },
 ];
 
@@ -27,7 +23,7 @@ export default function Confianca() {
   return (
     <section className="bg-base-200 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-3">
           {SINAIS.map((s) => {
             const Icon = s.icon;
             return (
