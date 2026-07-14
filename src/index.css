@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* =========================================================================
+   ogis.cloud — Identidade "Premium Dark + Gold"
+   Paleta: stone (tinta) + ouro (#CA8A04). Tipografia: Poppins / Open Sans.
+   Distinta da paleta corporativa teal (ogis-corp) usada no ogis-manager.
+   ========================================================================= */
+
+@theme {
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* --------------------- Tema único: ogis-dark ---------------------------- */
+@plugin "daisyui/theme" {
+  name: "ogis-dark";
+  default: true;
+  prefersdark: true;
+  color-scheme: "dark";
+
+  --color-base-100: #1c1917; /* superfícies (stone-900) */
+  --color-base-200: #0c0a09; /* fundo da página (stone-950) */
+  --color-base-300: #292524; /* bordas (stone-800) */
+  --color-base-content: #fafaf9; /* texto (stone-50) */
+
+  --color-primary: #eab308; /* ouro mais claro para contraste no escuro */
+  --color-primary-content: #1c1917;
+
+  --color-secondary: #fafaf9; /* botão claro sobre fundo escuro */
+  --color-secondary-content: #1c1917;
+
+  --color-accent: #fbbf24; /* âmbar-400 — links/ícones em fundo escuro */
+  --color-accent-content: #1c1917;
+
+  --color-neutral: #0c0a09;
+  --color-neutral-content: #a8a29e;
+
+  --color-info: #38bdf8;
+  --color-info-content: #0c0a09;
+  --color-success: #22c55e;
+  --color-success-content: #0c0a09;
+  --color-warning: #fbbf24;
+  --color-warning-content: #0c0a09;
+  --color-error: #f87171;
+  --color-error-content: #0c0a09;
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.625rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* ------------------------------ Base ------------------------------------ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Compensa a navbar fixa ao rolar para uma âncora */
+section[id] {
+  scroll-margin-top: 84px;
+}
+
+/* Brilho dourado sutil reutilizável (hero, CTA) */
+.glow-gold {
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-primary) 25%, transparent),
+    0 18px 60px -20px color-mix(in oklab, var(--color-primary) 55%, transparent);
+}
+
+/* Gradiente de texto dourado para destaques do título */
+.text-gradient-gold {
+  background: linear-gradient(120deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Entrada suave das seções */
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: riseIn 0.6s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-rise {
+    animation: none;
+  }
+}
