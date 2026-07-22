@@ -44,11 +44,14 @@ export const MSG = {
   contato: "Olá! Vim pelo site da ogis.cloud e quero conversar sobre o meu negócio.",
   plano: (nome) =>
     `Olá! Vim pelo site da ogis.cloud e tenho interesse no plano "${nome}". Podemos conversar?`,
+  diagnostico:
+    "Olá! Vim pelo exemplar da ogis.cloud e quero agendar o diagnóstico gratuito da minha operação digital.",
 };
 
 export const ASSUNTO = {
   contato: "Contato — ogis.cloud",
   plano: (nome) => `Interesse no plano ${nome} — ogis.cloud`,
+  diagnostico: "Diagnóstico gratuito — ogis.cloud",
 };
 
 // Âncoras de navegação (uma única página).
