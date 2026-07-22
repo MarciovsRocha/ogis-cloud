@@ -22,7 +22,7 @@ const LOCAL_BUSINESS_JSONLD = {
   slogan: BRAND.tagline,
 };
 
-export default function SEO({ title, description, path = "/" }) {
+export default function SEO({ title, description, path = "/", noindex = false }) {
   const fullTitle = title ? `${title} | ${BRAND.name}` : `${BRAND.name} — Presença digital e sistemas gerenciados`;
   const desc = description || DEFAULT_DESC;
   const url = `https://ogis.cloud${path}`;
@@ -31,6 +31,7 @@ export default function SEO({ title, description, path = "/" }) {
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={desc} />
+      {noindex && <meta name="robots" content="noindex, follow" />}
       <link rel="canonical" href={url} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={desc} />
