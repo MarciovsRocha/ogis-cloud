@@ -1007,10 +1007,11 @@ import { Outlet } from "react-router-dom";
 import FaixaExemplar from "../components/FaixaExemplar.jsx";
 
 // Chrome mínimo dos exemplares: a faixa de demonstração e nada mais.
-// O pt-9 compensa a altura da faixa fixa.
+// A faixa fixa mede 41px (py-2 + linha de texto + borda); pt-11 = 44px a
+// compensa com folga. NÃO reduza para pt-9: sobrepõe o topo do conteúdo.
 export default function ExemplarLayout() {
   return (
-    <div className="min-h-screen bg-base-200 pt-9 text-base-content">
+    <div className="min-h-screen bg-base-200 pt-11 text-base-content">
       <FaixaExemplar />
       <Outlet />
     </div>
@@ -1466,7 +1467,7 @@ export function BotaoDiagnostico({ children = "Agendar diagnóstico gratuito", g
 
 export function CabecalhoLanding() {
   return (
-    <header className="sticky top-9 z-40 border-b border-base-300 bg-base-100/85 backdrop-blur-md">
+    <header className="sticky top-11 z-40 border-b border-base-300 bg-base-100/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-3">
         <Wordmark className="h-7" />
         <BotaoDiagnostico>Falar agora</BotaoDiagnostico>
@@ -1879,7 +1880,7 @@ export function CabecalhoSite() {
   const [aberto, setAberto] = useState(false);
 
   return (
-    <header className="sticky top-9 z-40 border-b border-base-300 bg-base-100/85 backdrop-blur-md">
+    <header className="sticky top-11 z-40 border-b border-base-300 bg-base-100/85 backdrop-blur-md">
       <nav
         className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5"
         aria-label="Principal"
@@ -3281,7 +3282,7 @@ export function CabecalhoLoja() {
   const { total } = useOrcamento();
 
   return (
-    <header className="sticky top-9 z-40 border-b border-base-300 bg-base-100/85 backdrop-blur-md">
+    <header className="sticky top-11 z-40 border-b border-base-300 bg-base-100/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5">
         <Link to="/exemplos/loja" className="flex items-center gap-3" aria-label="Vitrine">
           <Wordmark className="h-7" withText={false} />
