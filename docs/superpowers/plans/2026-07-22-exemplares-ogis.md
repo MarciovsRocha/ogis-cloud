@@ -27,6 +27,13 @@ Estes valem para **todas** as tarefas:
 - **Testes:** importar `describe`/`it`/`expect` explicitamente de `"vitest"` em todo arquivo de teste. Não usar globais.
 - **Commits:** um commit por tarefa concluída, mensagem em português, prefixo `feat:` / `refactor:` / `docs:` / `test:`. Sem acentos na primeira linha da mensagem (o repo já segue isso).
 
+### Decisões de arquitetura já tomadas
+
+Estas foram decididas antes da execução. **Não são para reabrir em review** — se algo aqui parecer defeito, é decisão consciente, com o motivo registrado:
+
+1. **`src/data/exemplares.js` é a fonte única da lista dos três exemplares.** `IndiceExemplos.jsx` (Task 3) e `VejaFuncionando.jsx` (Task 9) consomem os **dados** dele, mas cada um mantém **a própria marcação** — os contextos visuais são diferentes (um é página inteira, o outro é uma seção da home). Duplicar o dado seria defeito; ter dois layouts, não.
+2. **`SiteSolucao.jsx` (Task 5) e `LojaProduto.jsx` (Task 7) permanecem separados**, mesmo compartilhando estrutura (cabeçalho com ícone, entregáveis, "ideal para", relacionados). Cada exemplar é autocontido e precisa poder divergir: a loja tem caixa de quantidade/observação e é indexável; o institucional tem CTA de orçamento e sai com `noindex`. Extrair um componente comum acoplaria os dois exemplares, e mexer em um passaria a arriscar o outro. **Esta duplicação é intencional.**
+
 ---
 
 ## Estrutura de arquivos
@@ -36,6 +43,7 @@ Estes valem para **todas** as tarefas:
 | **Dados** | |
 | `src/data/catalogo.js` | **Criar.** Fonte única: `CATEGORIAS` (4) + `CATALOGO` (12 itens) + helpers puros |
 | `src/data/catalogo.test.js` | **Criar.** Testes dos helpers de busca/filtro/selo |
+| `src/data/exemplares.js` | **Criar.** Fonte única da lista dos três exemplares (índice + home) |
 | `src/data/solucoes.js` | **Modificar.** Deixa de ter conteúdo próprio; passa a selecionar de `catalogo.js` |
 | `src/data/planos.js` | **Modificar.** Remove `preco`, `precoPrefixo`, `periodo` |
 | **Infra de rota** | |
@@ -903,6 +911,7 @@ Ao final desta tarefa `/exemplos` funciona e mostra três cards; as rotas dos ex
 - Create: `src/layouts/ExemplarLayout.jsx`
 - Create: `src/components/FaixaExemplar.jsx`
 - Create: `src/components/CardCatalogo.jsx`
+- Create: `src/data/exemplares.js`
 - Create: `src/exemplos/IndiceExemplos.jsx`
 - Create: `src/exemplos/NaoEncontrado.jsx`
 - Modify: `src/App.jsx` (rotas aninhadas)
@@ -1084,17 +1093,16 @@ export default function CardCatalogo({ item, para, children }) {
 
 O `<span className="absolute inset-0">` faz o card inteiro ser clicável; o `relative z-10` no slot de ação impede que ele cubra o botão.
 
-- [ ] **Step 7: Criar o índice dos exemplares**
+- [ ] **Step 7: Criar a lista de exemplares e o índice**
 
-Crie `src/exemplos/IndiceExemplos.jsx`:
+Primeiro a fonte única dos dados. Crie `src/data/exemplares.js`:
 
-```jsx
-import { Link } from "react-router-dom";
-import { MousePointerClick, Layout, ShoppingBag, ArrowRight } from "lucide-react";
-import SEO from "../components/SEO.jsx";
-import Wordmark from "../components/Wordmark.jsx";
+```js
+import { MousePointerClick, Layout, ShoppingBag } from "lucide-react";
 
-const EXEMPLARES = [
+// Os três exemplares navegáveis. Consumido pelo índice (/exemplos) e pela
+// seção "Veja funcionando" da home — cada um com a própria marcação.
+export const EXEMPLARES = [
   {
     para: "/exemplos/landing",
     icone: MousePointerClick,
@@ -1117,6 +1125,16 @@ const EXEMPLARES = [
     detalhe: "Ideal para quem tem catálogo e vende por orçamento.",
   },
 ];
+```
+
+Agora crie `src/exemplos/IndiceExemplos.jsx`:
+
+```jsx
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { EXEMPLARES } from "../data/exemplares.js";
+import SEO from "../components/SEO.jsx";
+import Wordmark from "../components/Wordmark.jsx";
 
 export default function IndiceExemplos() {
   return (
@@ -1272,7 +1290,7 @@ Encerre com `Ctrl+C`.
 - [ ] **Step 12: Commit**
 
 ```bash
-git add src/App.jsx src/layouts src/exemplos src/components/FaixaExemplar.jsx src/components/CardCatalogo.jsx src/components/SEO.jsx
+git add src/App.jsx src/layouts src/exemplos src/data/exemplares.js src/components/FaixaExemplar.jsx src/components/CardCatalogo.jsx src/components/SEO.jsx
 git commit -m "feat: layouts separados e rotas dos exemplares"
 ```
 
@@ -4088,31 +4106,13 @@ export const NAV = [
 
 Crie `src/components/VejaFuncionando.jsx`:
 
+Consome os dados de `src/data/exemplares.js` (criado na Task 3) e traz a própria marcação — aqui é uma seção da home, não uma página inteira.
+
 ```jsx
 import { Link } from "react-router-dom";
-import { MousePointerClick, Layout, ShoppingBag, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { EXEMPLARES } from "../data/exemplares.js";
 import SectionHeading from "./SectionHeading.jsx";
-
-const EXEMPLARES = [
-  {
-    para: "/exemplos/landing",
-    icone: MousePointerClick,
-    nome: "Landing Page",
-    resumo: "Uma página, um objetivo: transformar visita em contato.",
-  },
-  {
-    para: "/exemplos/site",
-    icone: Layout,
-    nome: "Site Institucional",
-    resumo: "Site completo, com várias páginas e navegação própria.",
-  },
-  {
-    para: "/exemplos/loja",
-    icone: ShoppingBag,
-    nome: "E-commerce",
-    resumo: "Vitrine com busca, filtros e pedido de orçamento.",
-  },
-];
 
 export default function VejaFuncionando() {
   return (
