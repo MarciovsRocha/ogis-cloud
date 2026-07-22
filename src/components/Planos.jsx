@@ -10,7 +10,7 @@ export default function Planos() {
         <SectionHeading
           eyebrow="Planos"
           title="Escolha por onde começar"
-          subtitle="Valores a partir de — o setup é orçado conforme o escopo do seu negócio."
+          subtitle="Cada orçamento é feito sob medida, depois de entender o seu negócio."
         />
 
         <div className="mt-14 grid items-stretch gap-6 lg:grid-cols-3">
@@ -35,18 +35,13 @@ export default function Planos() {
                 <h3 className="text-lg font-semibold text-base-content">{plano.nome}</h3>
                 <p className="mt-1 min-h-10 text-sm text-base-content/70">{plano.resumo}</p>
 
-                <div className="mt-5 flex items-end gap-1.5">
-                  {plano.precoPrefixo && (
-                    <span className="mb-1 text-xs font-medium text-base-content/60">
-                      {plano.precoPrefixo}
-                    </span>
-                  )}
-                  <span className="font-display text-4xl font-bold text-base-content">
-                    {plano.preco}
+                <div className="mt-5 flex flex-col gap-1">
+                  <span className="font-display text-2xl font-bold text-base-content">
+                    Sob consulta
                   </span>
-                  {plano.periodo && (
-                    <span className="mb-1.5 text-sm text-base-content/60">{plano.periodo}</span>
-                  )}
+                  <span className="text-xs text-base-content/60">
+                    Orçamento feito sob medida, depois de entender o seu negócio
+                  </span>
                 </div>
 
                 <a
