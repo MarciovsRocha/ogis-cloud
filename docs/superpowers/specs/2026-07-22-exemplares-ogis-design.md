@@ -16,7 +16,8 @@ negociação antes do escopo ser entendido — as cotações passam a ser feitas
 Três exemplares completamente funcionais, com conteúdo real da OGIS (não conteúdo fictício),
 publicados junto com o site atual:
 
-1. **Landing page** — página única de campanha, focada em conversão.
+1. **Landing page** — página única de campanha, focada em conversão, vendendo a solução
+   tecnológica da OGIS como um todo (não um produto isolado).
 2. **Site institucional** — site multi-página com navegação persistente.
 3. **E-commerce** — vitrine com o catálogo completo de produtos e soluções da OGIS.
 
@@ -126,6 +127,14 @@ Fonte única de verdade consumida pelos três exemplares e pela home. Formato de
 }
 ```
 
+O módulo também exporta `CATEGORIAS`, porque a landing consome as categorias como conteúdo de
+primeira classe (os quatro pilares) e a loja as usa como filtro:
+
+```js
+{ slug: "presenca-digital", nome: "Presença Digital",
+  promessa: "Ser encontrado e passar profissionalismo.", icone: Globe }
+```
+
 Categorias e itens:
 
 | Categoria | Itens |
@@ -157,15 +166,36 @@ Critério de aceite: nenhuma ocorrência de `R$` em `src/`.
 
 ### 5.1 Landing (`/exemplos/landing`)
 
-Campanha de **um único produto** — o Site Institucional — porque é assim que uma landing real
-funciona: uma promessa, uma ação. Página única, sem navegação interna além de âncoras, CTA repetido.
+Vende a **solução tecnológica da OGIS como um todo** — a empresa digitalizada de ponta a ponta,
+com um único responsável — e não um item isolado do catálogo. A disciplina de landing continua:
+página única, uma promessa, uma ação, sem navegação interna além de âncoras, CTA repetido. O que
+muda é a **altitude** da promessa: o resultado de negócio, não o entregável.
 
-Seções, em ordem: hero com promessa única e CTA · o problema (a dor do cliente) · a solução ·
-o que está incluso (entregáveis do item de catálogo) · como funciona em 4 passos · prova social ·
-FAQ (accordion) · CTA final com formulário curto.
+Promessa central: *"Sua empresa inteira funcionando online — site, e-mail, sistema e suporte —
+sob a responsabilidade de uma pessoa só."*
 
-O formulário coleta nome, negócio e contato, e abre o WhatsApp com a mensagem pré-preenchida.
-Sem envio para servidor.
+Seções, em ordem:
+
+1. **Hero** — promessa única, subtítulo com o diferencial do responsável único, CTA primário.
+2. **O problema** — a realidade da PME hoje: um fornecedor para o site, outro para o e-mail, um
+   sobrinho que fez o sistema e sumiu, e ninguém responde quando cai.
+3. **A solução** — a OGIS como responsável único de toda a operação digital.
+4. **Os quatro pilares** — Presença Digital, Sistemas, Infraestrutura e Serviços Contínuos, as
+   quatro categorias de `catalogo.js`, cada uma resumida pelo que resolve. Não é uma lista de
+   produtos para escolher: é a demonstração de que o escopo é completo.
+5. **Como funciona em 4 passos** — diagnóstico, proposta, implantação, sustentação.
+6. **Por que um responsável único** — a objeção central respondida de frente.
+7. **Prova social.**
+8. **FAQ** (accordion) — inclui "e se eu já tenho site?", "preciso trocar tudo de uma vez?",
+   "tem fidelidade?".
+9. **CTA final** com formulário curto.
+
+Uma única ação em toda a página: **agendar um diagnóstico gratuito**. Todos os CTAs levam ao mesmo
+lugar. O formulário coleta nome, negócio e contato, e abre o WhatsApp com a mensagem
+pré-preenchida. Sem envio para servidor.
+
+A landing consome as **categorias** de `catalogo.js` (não os itens individuais), o que a mantém
+sincronizada com o catálogo sem virar uma segunda vitrine — esse papel é da loja.
 
 ### 5.2 Site institucional (`/exemplos/site`)
 
