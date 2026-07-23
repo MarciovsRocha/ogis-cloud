@@ -52,6 +52,7 @@ export const ASSUNTO = {
   contato: "Contato — ogis.cloud",
   plano: (nome) => `Interesse no plano ${nome} — ogis.cloud`,
   diagnostico: "Diagnóstico gratuito — ogis.cloud",
+  orcamento: "Pedido de orçamento — ogis.cloud",
 };
 
 // Âncoras de navegação (uma única página).
