@@ -59,6 +59,7 @@ export const ASSUNTO = {
 export const NAV = [
   { href: "#solucoes", label: "Soluções" },
   { href: "#como-funciona", label: "Como funciona" },
+  { href: "#exemplos", label: "Exemplos" },
   { href: "#planos", label: "Planos" },
   { href: "#contato", label: "Contato" },
 ];

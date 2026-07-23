@@ -5,6 +5,7 @@ import ComoFunciona from "../components/ComoFunciona.jsx";
 import Planos from "../components/Planos.jsx";
 import ParaQuem from "../components/ParaQuem.jsx";
 import Confianca from "../components/Confianca.jsx";
+import VejaFuncionando from "../components/VejaFuncionando.jsx";
 import CTAFinal from "../components/CTAFinal.jsx";
 import Contato from "../components/Contato.jsx";
 
@@ -18,6 +19,7 @@ export default function LandingPage() {
       <Planos />
       <ParaQuem />
       <Confianca />
+      <VejaFuncionando />
       <CTAFinal />
       <Contato />
     </>
