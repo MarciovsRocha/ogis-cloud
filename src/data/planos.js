@@ -1,11 +1,8 @@
-// Planos com preço-âncora "a partir de" (decisão do Q&A). Valores vindos do
-// §2.1/§5.1 do relatório. O setup fica "sob escopo" — negociado na proposta.
+// Planos de entrada, sem preço: toda cotação é feita manualmente, caso a caso,
+// depois de entender o escopo do cliente. Os cards comunicam o que está incluso.
 export const PLANOS = [
   {
     nome: "Presença",
-    precoPrefixo: "a partir de",
-    preco: "R$ 180",
-    periodo: "/mês",
     resumo: "Para começar a ser encontrado e passar profissionalismo.",
     beneficios: [
       "Landing page profissional",
@@ -15,12 +12,10 @@ export const PLANOS = [
     ],
     cta: "Quero começar",
     destaque: false,
+    selo: null,
   },
   {
     nome: "Profissional",
-    precoPrefixo: "a partir de",
-    preco: "R$ 380",
-    periodo: "/mês",
     resumo: "O combo completo para quem quer presença séria e sem dor de cabeça.",
     beneficios: [
       "Site institucional completo",
@@ -35,9 +30,6 @@ export const PLANOS = [
   },
   {
     nome: "Sistema",
-    precoPrefixo: "",
-    preco: "Sob consulta",
-    periodo: "",
     resumo: "Sistema de gestão sob medida com sustentação total.",
     beneficios: [
       "Software sob medida para o seu processo",
@@ -48,6 +40,7 @@ export const PLANOS = [
     ],
     cta: "Solicitar orçamento",
     destaque: false,
+    selo: null,
   },
 ];
 

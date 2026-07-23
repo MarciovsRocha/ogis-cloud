@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import { SOLUCOES } from "../data/solucoes.js";
 import SectionHeading from "./SectionHeading.jsx";
+import SeloEscopo from "./SeloEscopo.jsx";
 
 export default function Solucoes() {
   return (
@@ -14,7 +15,7 @@ export default function Solucoes() {
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {SOLUCOES.map((sol) => {
-            const Icon = sol.icon;
+            const Icon = sol.icone;
             return (
               <article
                 key={sol.nome}
@@ -32,8 +33,9 @@ export default function Solucoes() {
                 </div>
                 <h3 className="mt-5 text-xl font-semibold text-base-content">{sol.nome}</h3>
                 <p className="mt-2 text-sm text-base-content/70">{sol.resumo}</p>
+                <SeloEscopo item={sol} className="mt-4 self-start" />
                 <ul className="mt-5 flex flex-1 flex-col gap-2.5 border-t border-base-300 pt-5">
-                  {sol.itens.map((item) => (
+                  {sol.entregaveis.slice(0, 3).map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-base-content/80">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                       {item}

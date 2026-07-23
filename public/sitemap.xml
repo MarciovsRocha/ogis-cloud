@@ -6,6 +6,71 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://ogis.cloud/exemplos/loja</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/landing-page</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/site-institucional</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/e-commerce</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/seo-local</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/sistema-gestao</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/nota-fiscal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/integracoes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/dominio</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/email-profissional</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/hospedagem</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/manutencao</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ogis.cloud/exemplos/loja/p/migracao</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ogis.cloud/termos</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

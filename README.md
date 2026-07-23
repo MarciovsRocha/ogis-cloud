@@ -37,12 +37,43 @@ pré-preenchida conforme a opção clicada. Os textos ficam em `MSG` / `ASSUNTO`
 src/
   config.js              # contato/CTAs + navegação (edite os placeholders aqui)
   index.css              # Tailwind v4 + daisyUI + tema ogis-dark
-  App.jsx                # rotas (/, /termos, /privacidade)
-  data/                  # solucoes.js, planos.js (conteúdo dos cards)
-  components/            # Navbar, Hero, Solucoes, ComoFunciona, Planos, ParaQuem,
-                         # Confianca, CTAAuditoria, Contato, Footer, SEO, Wordmark...
+  App.jsx                # rotas: SiteLayout (site real) + ExemplarLayout (exemplares)
+  layouts/               # SiteLayout, ExemplarLayout
+  data/                  # catalogo.js (FONTE ÚNICA), solucoes.js, planos.js
+  components/            # Navbar, Hero, Solucoes, Planos, CardCatalogo, SeloEscopo...
   pages/                 # LandingPage, Termos, Privacidade
+  exemplos/              # os três exemplares funcionais
+    landing/             # /exemplos/landing  — página única de campanha
+    site/                # /exemplos/site     — institucional multi-página
+    loja/                # /exemplos/loja     — vitrine + lista de orçamento
 email-signature/         # assinatura de e-mail (ver seção abaixo)
+```
+
+## Exemplares funcionais
+
+Três demonstrações navegáveis, com o conteúdo real da OGIS, para mostrar ao cliente o que cada
+formato entrega. Todas ficam sob `/exemplos` e usam o mesmo build e o mesmo deploy do site.
+
+| Rota | O que demonstra |
+|---|---|
+| `/exemplos` | Índice dos três exemplares |
+| `/exemplos/landing` | Landing page: uma promessa, uma ação (vende a solução tecnológica completa) |
+| `/exemplos/site` | Site institucional multi-página (Início, Sobre, Soluções, Contato) |
+| `/exemplos/loja` | E-commerce: vitrine com busca e filtros + lista de orçamento |
+
+**Sem preços.** Nenhuma página do projeto exibe valor: as cotações são feitas manualmente, caso a
+caso. No lugar do preço, os cards mostram um selo de escopo ("Projeto · prazo típico 2 a 3
+semanas", "Mensal · sob consulta"), gerado por `textoEscopo()` em `src/data/catalogo.js`.
+
+**Conteúdo.** Os três exemplares e a home leem de `src/data/catalogo.js` — 12 itens em 4
+categorias. Para alterar textos de produto, edite **só esse arquivo**.
+
+**Lista de orçamento.** O carrinho da loja é front-end puro: estado em `localStorage`
+(chave `ogis:orcamento`, guardando apenas `{slug, quantidade, observacao}`) e envio via WhatsApp ou
+e-mail com a mensagem já montada. Não há backend, banco nem pagamento.
+
+```bash
+npm test          # testa a lógica pura: catálogo, reducer do orçamento e a mensagem
 ```
 
 ## Assinatura de e-mail
