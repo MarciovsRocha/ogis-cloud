@@ -16,7 +16,7 @@ export const BRAND = {
 
 // WhatsApp: número no formato internacional, só dígitos (55 + DDD + número).
 // PLACEHOLDER — substituir pelo número real.
-export const WHATSAPP_NUMERO = "5541999999999";
+export const WHATSAPP_NUMERO = "5541998678072";
 
 // ---------------------------------------------------------------------------
 // Geradores de link com pretexto (mensagem pré-preenchida)
