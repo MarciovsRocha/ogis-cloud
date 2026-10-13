@@ -8,23 +8,42 @@ import BotaoContato from "../BotaoContato.jsx";
 export default function Navbar() {
   const [aberto, setAberto] = useState(false);
   const botaoRef = useRef(null);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     if (!aberto) return undefined;
+
+    // O menu só existe abaixo de 768px. Se a tela crescer (ex.: girar o celular),
+    // ele fecha; a trava de rolagem é CSS (html.menu-aberto, só no mobile) para
+    // nunca prender a página larga mesmo que esse evento não chegue.
+    const largo = window.matchMedia("(min-width: 768px)");
+    const aoMudarLargura = () => largo.matches && setAberto(false);
+
+    // Foco fica dentro do menu: links da camada + botão que fecha.
+    const focaveis = () => [...menuRef.current.querySelectorAll("a"), botaoRef.current];
 
     function aoTeclar(evento) {
       if (evento.key === "Escape") {
         setAberto(false);
         botaoRef.current?.focus();
+        return;
       }
+      if (evento.key !== "Tab" || largo.matches) return;
+      const lista = focaveis();
+      const atual = lista.indexOf(document.activeElement);
+      const proximo = evento.shiftKey ? (atual <= 0 ? lista.length - 1 : atual - 1) : (atual + 1) % lista.length;
+      evento.preventDefault();
+      lista[proximo].focus();
     }
 
-    const overflowAnterior = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.documentElement.classList.add("menu-aberto");
     document.addEventListener("keydown", aoTeclar);
+    largo.addEventListener("change", aoMudarLargura);
+    menuRef.current?.querySelector("a")?.focus();
     return () => {
-      document.body.style.overflow = overflowAnterior;
+      document.documentElement.classList.remove("menu-aberto");
       document.removeEventListener("keydown", aoTeclar);
+      largo.removeEventListener("change", aoMudarLargura);
     };
   }, [aberto]);
 
@@ -33,6 +52,7 @@ export default function Navbar() {
       {/* Camada do menu mobile — vem antes da nav no DOM para ficar por baixo dela. */}
       <div
         id="menu-movel"
+        ref={menuRef}
         inert={!aberto}
         className={`fixed inset-0 bg-base-200/95 px-6 pt-28 backdrop-blur-2xl transition-opacity duration-500 ease-mola md:hidden ${
           aberto ? "opacity-100" : "pointer-events-none opacity-0"

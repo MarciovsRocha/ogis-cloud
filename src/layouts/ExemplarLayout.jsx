@@ -1,6 +1,20 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import FaixaExemplar from "../components/FaixaExemplar.jsx";
+import ErroCarregamento, { CHAVE_RECARGA } from "../components/ErroCarregamento.jsx";
+
+// Só monta quando o exemplar carregou de verdade: libera uma nova recarga
+// automática caso outro chunk falhe mais tarde nesta aba.
+function CarregouComSucesso() {
+  useEffect(() => {
+    try {
+      window.sessionStorage.removeItem(CHAVE_RECARGA);
+    } catch {
+      // Sem sessionStorage: nada a limpar.
+    }
+  }, []);
+  return null;
+}
 
 // Chrome mínimo dos exemplares: a faixa da OGIS e nada mais. Cada exemplar
 // aplica o próprio tema com <Tema>. A faixa mede exatamente 44px (h-11):
@@ -12,9 +26,12 @@ export default function ExemplarLayout() {
         Pular para o conteúdo
       </a>
       <FaixaExemplar />
-      <Suspense fallback={<div className="min-h-screen" />}>
-        <Outlet />
-      </Suspense>
+      <ErroCarregamento>
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <Outlet />
+          <CarregouComSucesso />
+        </Suspense>
+      </ErroCarregamento>
     </div>
   );
 }

@@ -65,6 +65,13 @@
   }
 }
 
+/* Menu mobile da home aberto: trava a rolagem só onde o menu existe (< 768px). */
+@media (max-width: 767.98px) {
+  html.menu-aberto {
+    overflow: hidden;
+  }
+}
+
 /* Link "pular para o conteúdo": invisível até receber foco. */
 .pular-conteudo {
   position: fixed;
