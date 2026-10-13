@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import { DORES } from "../conteudo.js";
+import { useGsap } from "../useGsap.js";
+import { animarProblema } from "../animacoes.js";
 
 export default function Problema() {
   const ref = useRef(null);
+  useGsap(ref, animarProblema);
 
   return (
     <section ref={ref} id="problema" className="bg-base-100">

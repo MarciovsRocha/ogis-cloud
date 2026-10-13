@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import { PASSOS } from "../conteudo.js";
+import { useGsap } from "../useGsap.js";
+import { animarPassos } from "../animacoes.js";
 
 export default function Passos() {
   const ref = useRef(null);
+  useGsap(ref, animarPassos);
 
   return (
     <section ref={ref} id="como-funciona" className="bg-base-100">

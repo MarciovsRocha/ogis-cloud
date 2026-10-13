@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { Check } from "@phosphor-icons/react";
 import { CATEGORIAS } from "../../../data/catalogo.js";
+import { useGsap } from "../useGsap.js";
+import { animarFrase } from "../animacoes.js";
 
 const FRASE = ["UM", "CONTRATO.", "UMA", "PESSOA.", "TUDO", "NO", "AR."];
 
@@ -13,6 +15,7 @@ const GARANTIAS = [
 
 export default function Solucao() {
   const ref = useRef(null);
+  useGsap(ref, animarFrase);
 
   return (
     <section ref={ref} id="pilares" className="bg-primary py-28 text-primary-content sm:py-40">

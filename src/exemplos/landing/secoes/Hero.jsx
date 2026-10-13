@@ -1,6 +1,8 @@
 import { Fragment, useRef } from "react";
 import { CATALOGO } from "../../../data/catalogo.js";
 import BotaoDiagnostico from "./BotaoDiagnostico.jsx";
+import { useGsap } from "../useGsap.js";
+import { animarHero } from "../animacoes.js";
 
 const PALAVRAS = [
   { texto: "Um" },
@@ -15,6 +17,7 @@ const LETREIRO = CATALOGO.map((item) => item.nome.toUpperCase());
 
 export default function Hero() {
   const ref = useRef(null);
+  useGsap(ref, animarHero);
 
   return (
     <section

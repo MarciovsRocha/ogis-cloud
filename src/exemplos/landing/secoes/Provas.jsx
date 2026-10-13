@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import { PROVAS } from "../conteudo.js";
+import { useGsap } from "../useGsap.js";
+import { animarProvas } from "../animacoes.js";
 
 export default function Provas() {
   const ref = useRef(null);
+  useGsap(ref, animarProvas);
 
   return (
     <section ref={ref} id="provas" className="bg-primary py-24 text-primary-content sm:py-32">
