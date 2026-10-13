@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "test": "vitest run",
+    "verificar:bundle": "node scripts/verificar-bundle.mjs",
     "preview": "npm run build && wrangler dev",
     "deploy": "npm run build && wrangler deploy"
   },
@@ -18,7 +19,6 @@
     "@fontsource-variable/manrope": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",
     "gsap": "^3.15.0",
-    "lucide-react": "^1.14.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-helmet-async": "^3.0.0",

@@ -5,13 +5,24 @@ PMEs de Curitiba). Parte do ecossistema Ogis.
 
 ## Stack
 - **React 19 + Vite** · **Tailwind v4** (`@tailwindcss/vite`) + **daisyUI v5**
-- `react-router-dom` (rotas `/`, `/termos`, `/privacidade`) · `react-helmet-async` (SEO) · `lucide-react`
+- `react-router-dom` (rotas `/`, `/termos`, `/privacidade`, `/exemplos/*`) · `react-helmet-async` (SEO) · `@phosphor-icons/react` (ícones) · `gsap` (só na landing exemplar) · fontes self-hosted via `@fontsource-variable`
 - Deploy: **Cloudflare** (Wrangler) — domínio `ogis.cloud`
 
 ## Identidade visual
-Tema **único** "Premium Dark + Gold" (stone `#1c1917`/`#0c0a09` + ouro `#ca8a04`/`#eab308`),
-fontes **Poppins / Open Sans**. Definido em `src/index.css` como o tema daisyUI `ogis-dark`
-(sem modo claro). `data-theme="ogis-dark"` fica fixo no `index.html`.
+
+Marca da holding: **"Infraestrutura noturna"** — grafite `#0D0F0E` + verde-sinal `#B8F25B`,
+fontes **Geist / Geist Mono**. Cada exemplar tem uma direção de arte própria, como se fosse feito
+por uma agência diferente:
+
+| Superfície | Tema daisyUI | Direção |
+|---|---|---|
+| Home, termos, privacidade, `/exemplos`, faixa de exemplar | `ogis-infra` | grafite + verde-sinal, Geist |
+| `/exemplos/landing` | `exemplar-campanha` | cobalto + osso, Archivo 900, movimento com GSAP |
+| `/exemplos/site` | `exemplar-sereno` | marfim + sálvia, Manrope, sem sombras |
+| `/exemplos/loja` | `exemplar-bento` | creme + uma cor por categoria, Manrope 800 |
+
+Os temas ficam em `src/styles/temas/*.css`; qual superfície usa qual tema está em
+`src/styles/temas.js`. O componente `<Tema superficie="…">` aplica o tema na página e no `<html>`.
 > Intencionalmente **distinta** da paleta corporativa teal (`ogis-corp`) do `ogis-manager`.
 
 ## Comandos
@@ -20,6 +31,8 @@ npm install
 npm run dev       # http://localhost:5173
 npm run build     # dist/
 npm run lint
+npm test          # lógica pura: catálogo, temas, orçamento, validações
+npm run verificar:bundle  # depois do build: a home não pode carregar GSAP nem fontes dos exemplares
 npm run preview   # build + wrangler dev
 npm run deploy    # build + wrangler deploy
 ```
@@ -36,11 +49,16 @@ pré-preenchida conforme a opção clicada. Os textos ficam em `MSG` / `ASSUNTO`
 ```
 src/
   config.js              # contato/CTAs + navegação (edite os placeholders aqui)
-  index.css              # Tailwind v4 + daisyUI + tema ogis-dark
+  index.css              # Tailwind v4 + daisyUI + base comum (revelar, foco, skip link)
+  styles/temas/          # os quatro temas daisyUI (ogis-infra + um por exemplar)
+  styles/temas.js        # superfície → tema
+  lib/                   # helpers puros (abrirExterno, slug)
+  hooks/                 # useRevelar (entrada ao rolar)
   App.jsx                # rotas: SiteLayout (site real) + ExemplarLayout (exemplares)
   layouts/               # SiteLayout, ExemplarLayout
   data/                  # catalogo.js (FONTE ÚNICA), solucoes.js, planos.js
-  components/            # Navbar, Hero, Solucoes, Planos, CardCatalogo, SeloEscopo...
+  components/            # Tema, Wordmark, BotaoContato, Revelar, SeloEscopo, LegalLayout...
+  components/home/       # seções da home (Navbar, Hero, Solucoes, Planos, Contato...)
   pages/                 # LandingPage, Termos, Privacidade
   exemplos/              # os três exemplares funcionais
     landing/             # /exemplos/landing  — página única de campanha
@@ -78,7 +96,7 @@ npm test          # testa a lógica pura: catálogo, reducer do orçamento e a m
 
 ## Assinatura de e-mail
 
-Assinatura de e-mail HTML na identidade da ogis.cloud (fundo asfalto + ouro), com o **logo
+Assinatura de e-mail HTML na identidade da ogis.cloud (grafite + verde-sinal), com o **logo
 embutido em base64** — **não depende de nenhum link/imagem externa** (funciona offline e não
 "quebra" se um servidor de imagens sair do ar).
 
@@ -115,7 +133,7 @@ Abra `assinatura-ogis-cloud.html` e troque os campos entre `[colchetes]`:
 | Local | `[Curitiba, PR &mdash; Brasil]` |
 
 O wordmark **ogis.cloud** já aponta para `https://ogis.cloud`. Os ícones (✉ ☎ ⚑) são glifos
-monocromáticos em ouro — troque-os no `HTML` do script se preferir outros.
+monocromáticos em verde-sinal — troque-os no `HTML` do script se preferir outros.
 
 ### 3. Instalar no cliente de e-mail
 
