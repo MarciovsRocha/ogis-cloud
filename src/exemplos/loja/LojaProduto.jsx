@@ -85,7 +85,7 @@ export default function LojaProduto() {
               </div>
               <label className="mt-5 flex flex-col gap-2">
                 <span className="text-sm font-bold text-base-content">
-                  Alguma observação? <span className="font-normal text-base-content/60">(opcional)</span>
+                  Alguma observação? <span className="font-normal text-base-content/75">(opcional)</span>
                 </span>
                 <textarea
                   rows={3}

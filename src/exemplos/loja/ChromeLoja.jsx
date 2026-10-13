@@ -10,7 +10,7 @@ export function CabecalhoLoja() {
   return (
     <header className="sticky top-11 z-(--z-cabecalho) border-b border-base-300 bg-base-100/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5">
-        <Link to="/exemplos/loja" className="flex items-center gap-2.5" aria-label="Vitrine">
+        <Link to="/exemplos/loja" className="flex items-center gap-2.5" aria-label="catálogo ogis — vitrine">
           <Wordmark variante="simbolo" className="h-6 text-primary" />
           <span className="text-lg font-extrabold tracking-[-0.03em] text-base-content">catálogo ogis</span>
         </Link>

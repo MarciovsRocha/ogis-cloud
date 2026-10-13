@@ -25,7 +25,7 @@ export function CabecalhoSite() {
   return (
     <header className="sticky top-11 z-(--z-cabecalho) border-b border-base-300 bg-base-100/95 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4" aria-label="Principal">
-        <Link to="/exemplos/site" aria-label="Início">
+        <Link to="/exemplos/site" aria-label="ogis.cloud — início">
           <Wordmark variante="mono" className="h-6 text-base-content" />
         </Link>
 

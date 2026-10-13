@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import MiniaturaExemplar from "./MiniaturaExemplar.jsx";
 
-export default function CartaoExemplar({ exemplar, mostrarDetalhe = false }) {
+// `nivel` acompanha a página: h3 sob o h2 da home, h2 sob o h1 do índice.
+export default function CartaoExemplar({ exemplar, mostrarDetalhe = false, nivel = 3 }) {
+  const Titulo = `h${nivel}`;
   return (
     <Link
       to={exemplar.para}
@@ -15,7 +17,7 @@ export default function CartaoExemplar({ exemplar, mostrarDetalhe = false }) {
           </div>
         </div>
         <div className="flex flex-1 flex-col p-6">
-          <h3 className="text-xl font-semibold tracking-[-0.02em] text-base-content">{exemplar.nome}</h3>
+          <Titulo className="text-xl font-semibold tracking-[-0.02em] text-base-content">{exemplar.nome}</Titulo>
           <p className="mt-2 text-sm text-base-content/70">{exemplar.resumo}</p>
           {mostrarDetalhe && <p className="mt-3 text-sm text-base-content/60">{exemplar.detalhe}</p>}
           <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-primary">

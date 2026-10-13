@@ -107,7 +107,7 @@ export default function SiteContato() {
 
             <div className="flex flex-col gap-2">
               <label htmlFor="contato-empresa" className="text-sm font-bold text-base-content">
-                Empresa <span className="font-normal text-base-content/60">(opcional)</span>
+                Empresa <span className="font-normal text-base-content/75">(opcional)</span>
               </label>
               <input type="text" autoComplete="organization" placeholder="Nome do seu negócio" {...propsCampo("empresa")} />
             </div>

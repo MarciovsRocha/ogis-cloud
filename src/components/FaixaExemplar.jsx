@@ -9,6 +9,8 @@ import Wordmark from "./Wordmark.jsx";
 export default function FaixaExemplar() {
   return (
     <div
+      role="region"
+      aria-label="Aviso de exemplar"
       data-theme={TEMA_POR_SUPERFICIE.faixa}
       className="fixed inset-x-0 top-0 z-(--z-faixa) border-b border-white/[0.08] bg-base-200/95 backdrop-blur-md"
     >

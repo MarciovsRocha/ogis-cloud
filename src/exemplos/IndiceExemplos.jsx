@@ -31,7 +31,7 @@ export default function IndiceExemplos() {
           <div className="mt-16 grid gap-4 md:grid-cols-3">
             {EXEMPLARES.map((exemplar, i) => (
               <Revelar key={exemplar.para} atraso={i * 90} className="min-w-0">
-                <CartaoExemplar exemplar={exemplar} mostrarDetalhe />
+                <CartaoExemplar exemplar={exemplar} mostrarDetalhe nivel={2} />
               </Revelar>
             ))}
           </div>

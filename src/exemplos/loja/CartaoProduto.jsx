@@ -4,7 +4,9 @@ import BotaoAdicionar from "./BotaoAdicionar.jsx";
 import { corDaCategoria } from "./corCategoria.js";
 
 // A "capa" na cor da categoria, com o ícone grande, ocupa o lugar da foto.
-export default function CartaoProduto({ item, className = "" }) {
+// `nivel` acompanha a página: h2 na vitrine (sob o h1), h3 nos relacionados.
+export default function CartaoProduto({ item, className = "", nivel = 3 }) {
+  const Titulo = `h${nivel}`;
   const cor = corDaCategoria(item.categoria);
   const Icone = item.icone;
 
@@ -21,7 +23,7 @@ export default function CartaoProduto({ item, className = "" }) {
           />
         </div>
         <div className="px-3 pt-4">
-          <h3 className="break-words text-lg font-extrabold tracking-[-0.02em] text-base-content">{item.nome}</h3>
+          <Titulo className="break-words text-lg font-extrabold tracking-[-0.02em] text-base-content">{item.nome}</Titulo>
           <p className="mt-1 text-sm text-base-content/75">{item.resumo}</p>
         </div>
       </Link>

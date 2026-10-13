@@ -24,7 +24,7 @@ export default function MiniaturaExemplar({ estilo }) {
       <div aria-hidden="true" className="flex aspect-[4/3] flex-col overflow-hidden bg-[#fbfaf8] text-[#2b2926]">
         <div className="flex items-center justify-between border-b border-[#2b2926]/10 px-4 py-2.5 text-[9px]">
           <b className="font-extrabold">ogis.cloud</b>
-          <span className="flex gap-2 opacity-60">
+          <span className="flex gap-2 opacity-75">
             <span className="font-bold opacity-100">Início</span>
             <span>Sobre</span>
             <span>Soluções</span>

@@ -128,7 +128,7 @@ export default function LojaVitrine() {
         {itens.length > 0 ? (
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {itens.map((item) => (
-              <CartaoProduto key={item.slug} item={item} />
+              <CartaoProduto key={item.slug} item={item} nivel={2} />
             ))}
           </div>
         ) : (

@@ -206,13 +206,13 @@ export default function LojaOrcamento() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="orcamento-empresa" className="text-sm font-bold">
-                    Empresa <span className="font-normal text-base-content/70">(opcional)</span>
+                    Empresa <span className="font-normal text-base-content/75">(opcional)</span>
                   </label>
                   <input type="text" autoComplete="organization" placeholder="Nome do seu negócio" {...propsCampo("empresa")} />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="orcamento-contato" className="text-sm font-bold">
-                    E-mail ou telefone <span className="font-normal text-base-content/70">(opcional)</span>
+                    E-mail ou telefone <span className="font-normal text-base-content/75">(opcional)</span>
                   </label>
                   <input type="text" autoComplete="email" placeholder="Como prefere ser respondido" {...propsCampo("contato")} />
                   {erros.contato && <p id="orcamento-contato-erro" className="text-sm font-bold text-error">{erros.contato}</p>}
