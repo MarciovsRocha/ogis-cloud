@@ -1,0 +1,72 @@
+/* Exemplar landing — estilos que o Tailwind não expressa bem.
+   Regra de ouro: o DOM sem animação já é o estado final. As classes .ativa
+   só entram por JS (useGsap) em telas ≥ 768px sem prefers-reduced-motion. */
+
+.texto-contorno {
+  color: transparent;
+  -webkit-text-stroke: 0.03em var(--contorno, var(--color-base-content));
+}
+
+/* Letreiro infinito — CSS puro, conteúdo duplicado. */
+@keyframes letreiro {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.letreiro-trilha {
+  display: flex;
+  width: max-content;
+  animation: letreiro 45s linear infinite;
+}
+
+/* Cabeçalho depois de rolar: régua e fundo sólido, sem mudar de altura. */
+.cabecalho-landing.rolado {
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--color-primary-content) 25%, transparent);
+}
+
+/* Problema: cartas empilhadas com pin. */
+.palco.ativa {
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.palco.ativa .pilha {
+  position: relative;
+  display: block;
+  height: min(26rem, 52dvh);
+}
+
+.palco.ativa .carta {
+  position: absolute;
+  inset: 0;
+}
+
+/* Passos: trilha horizontal com pin. */
+.trilha-palco.ativa {
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.trilha-palco.ativa .trilha {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+}
+
+.trilha-palco.ativa .passo {
+  width: min(30rem, 70vw);
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letreiro-trilha {
+    animation: none;
+  }
+}

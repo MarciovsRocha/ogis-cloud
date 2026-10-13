@@ -1,18 +1,16 @@
 import "@fontsource-variable/archivo";
-import Tema from "../../components/Tema.jsx";
+import "./landing.css";
 import SEO from "../../components/SEO.jsx";
-import {
-  CabecalhoLanding,
-  HeroLanding,
-  Problema,
-  Pilares,
-  Passos,
-  ResponsavelUnico,
-  Provas,
-  Faq,
-  CtaFinal,
-  RodapeLanding,
-} from "./secoes.jsx";
+import Tema from "../../components/Tema.jsx";
+import Cabecalho from "./secoes/Cabecalho.jsx";
+import Hero from "./secoes/Hero.jsx";
+import Problema from "./secoes/Problema.jsx";
+import Solucao from "./secoes/Solucao.jsx";
+import Passos from "./secoes/Passos.jsx";
+import Provas from "./secoes/Provas.jsx";
+import Faq from "./secoes/Faq.jsx";
+import CtaFinal from "./secoes/CtaFinal.jsx";
+import Rodape from "./secoes/Rodape.jsx";
 
 export default function LandingExemplar() {
   return (
@@ -23,18 +21,17 @@ export default function LandingExemplar() {
         path="/exemplos/landing"
         noindex
       />
-      <CabecalhoLanding />
+      <Cabecalho />
       <main id="conteudo">
-        <HeroLanding />
+        <Hero />
         <Problema />
-        <Pilares />
+        <Solucao />
         <Passos />
-        <ResponsavelUnico />
         <Provas />
         <Faq />
         <CtaFinal />
       </main>
-      <RodapeLanding />
+      <Rodape />
     </Tema>
   );
 }
