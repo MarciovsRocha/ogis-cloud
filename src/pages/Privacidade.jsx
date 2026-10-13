@@ -1,4 +1,5 @@
 import LegalLayout from "../components/LegalLayout.jsx";
+import Secao from "../components/Secao.jsx";
 import { BRAND } from "../config.js";
 
 export default function Privacidade() {
@@ -15,46 +16,41 @@ export default function Privacidade() {
         coletamos e como os utilizamos.
       </p>
 
-      <div>
-        <h2>1. Dados que coletamos</h2>
+      <Secao titulo="1. Dados que coletamos">
         <p>
           Coletamos apenas os dados que você nos fornece ao solicitar um orçamento ou entrar em contato —
           como nome, empresa, WhatsApp, e-mail e informações sobre o seu negócio — e dados técnicos
           básicos de navegação para melhorar o site.
         </p>
-      </div>
+      </Secao>
 
-      <div>
-        <h2>2. Como usamos</h2>
+      <Secao titulo="2. Como usamos">
         <p>
           Usamos seus dados para responder ao seu contato, elaborar propostas, prestar os serviços
           contratados e manter você informado sobre o andamento. Não vendemos seus dados a terceiros.
         </p>
-      </div>
+      </Secao>
 
-      <div>
-        <h2>3. Compartilhamento</h2>
+      <Secao titulo="3. Compartilhamento">
         <p>
           Podemos usar fornecedores de infraestrutura (hospedagem, e-mail, cobrança) estritamente para
           operar os serviços contratados, sempre com o cuidado de proteger suas informações.
         </p>
-      </div>
+      </Secao>
 
-      <div>
-        <h2>4. Seus direitos</h2>
+      <Secao titulo="4. Seus direitos">
         <p>
           Você pode solicitar acesso, correção ou exclusão dos seus dados, além de revogar
           consentimentos, a qualquer momento, escrevendo para {BRAND.email}.
         </p>
-      </div>
+      </Secao>
 
-      <div>
-        <h2>5. Segurança</h2>
+      <Secao titulo="5. Segurança">
         <p>
           Adotamos medidas técnicas e organizacionais para proteger seus dados, incluindo acesso
           restrito às informações e ao ambiente onde o seu negócio está hospedado.
         </p>
-      </div>
+      </Secao>
     </LegalLayout>
   );
 }

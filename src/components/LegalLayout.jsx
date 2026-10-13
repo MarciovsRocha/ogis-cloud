@@ -1,29 +1,55 @@
+import { Children } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@phosphor-icons/react";
 import SEO from "./SEO.jsx";
+import Secao from "./Secao.jsx";
+import { slugTitulo } from "../lib/slug.js";
 
-// Layout enxuto para páginas legais (Termos/Privacidade). Compensa a navbar fixa.
+// Páginas legais: coluna de leitura de ~68ch e índice lateral fixo (≥ lg),
+// montado a partir dos filhos <Secao titulo="…">.
 export default function LegalLayout({ title, description, path, atualizadoEm, children }) {
+  const indice = Children.toArray(children)
+    .filter((filho) => filho.type === Secao)
+    .map((filho) => ({ id: slugTitulo(filho.props.titulo), titulo: filho.props.titulo }));
+
   return (
     <div className="bg-base-200">
       <SEO title={title} description={description} path={path} />
-      <div className="mx-auto max-w-3xl px-5 pb-24 pt-32">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 text-sm font-medium text-base-content/60 transition-colors duration-200 hover:text-primary"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Voltar ao início
-        </Link>
+      <div className="mx-auto max-w-6xl px-5 pb-28 pt-36 lg:grid lg:grid-cols-[14rem_1fr] lg:gap-16">
+        <aside className="hidden lg:block">
+          <nav aria-label="Nesta página" className="sticky top-32">
+            <p className="font-mono text-[11px] text-base-content/60">nesta página</p>
+            <ol className="mt-4 flex flex-col gap-2.5 border-l border-white/10">
+              {indice.map((s) => (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
+                    className="-ml-px block border-l border-transparent pl-4 text-sm text-base-content/65 transition-colors duration-300 ease-mola hover:border-primary hover:text-base-content"
+                  >
+                    {s.titulo}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
 
-        <h1 className="mt-6 text-3xl font-bold text-base-content sm:text-4xl">{title}</h1>
-        {atualizadoEm && (
-          <p className="mt-2 text-sm text-base-content/60">Última atualização: {atualizadoEm}</p>
-        )}
-
-        <div className="mt-8 flex flex-col gap-6 text-base-content/80 [&_h2]:mt-4 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-base-content [&_p]:leading-relaxed">
-          {children}
-        </div>
+        <article className="max-w-[68ch]">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 font-mono text-xs text-base-content/65 transition-colors duration-300 ease-mola hover:text-primary"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+            voltar ao início
+          </Link>
+          <h1 className="mt-8 text-4xl font-semibold tracking-[-0.04em] text-base-content sm:text-5xl">{title}</h1>
+          {atualizadoEm && (
+            <p className="mt-3 font-mono text-xs text-base-content/60">
+              última atualização · {atualizadoEm.toLowerCase()}
+            </p>
+          )}
+          <div className="mt-10 flex flex-col gap-8 leading-relaxed text-base-content/75">{children}</div>
+        </article>
       </div>
     </div>
   );
