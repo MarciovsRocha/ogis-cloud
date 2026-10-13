@@ -1,25 +1,31 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, FlaskConical } from "lucide-react";
+import { ArrowLeft } from "@phosphor-icons/react";
+import { TEMA_POR_SUPERFICIE } from "../styles/temas.js";
+import Wordmark from "./Wordmark.jsx";
 
-// Barra fixa no topo dos exemplares. Fica acima de todo o chrome de cada
-// demonstração, por isso os cabeçalhos dos exemplares começam abaixo dela.
+// Faixa fixa de 44px (h-11) no topo dos exemplares, sempre no tema da OGIS.
+// ExemplarLayout usa pt-11 e os cabeçalhos dos exemplares usam top-11: se a
+// altura mudar, os três mudam juntos.
 export default function FaixaExemplar() {
   return (
-    <div className="fixed inset-x-0 top-0 z-[60] border-b border-primary/30 bg-primary/10 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2">
-        <span className="inline-flex items-center gap-2 text-xs font-medium text-base-content/80">
-          <FlaskConical className="h-3.5 w-3.5 shrink-0 text-primary" />
-          <span>
-            <strong className="font-semibold text-base-content">Exemplar OGIS</strong>
-            <span className="hidden sm:inline"> · demonstração navegável, feita pela ogis.cloud</span>
+    <div
+      data-theme={TEMA_POR_SUPERFICIE.faixa}
+      className="fixed inset-x-0 top-0 z-(--z-faixa) border-b border-white/[0.08] bg-base-200/95 backdrop-blur-md"
+    >
+      <div className="mx-auto flex h-11 max-w-6xl items-center justify-between gap-3 px-4">
+        <span className="inline-flex min-w-0 items-center gap-3 text-xs text-base-content/70">
+          <Wordmark variante="simbolo" className="h-4 text-primary" />
+          <span className="truncate">
+            <strong className="font-medium text-base-content">Exemplar OGIS</strong>
+            <span className="hidden sm:inline"> · demonstração navegável feita pela ogis.cloud</span>
           </span>
         </span>
         <Link
           to="/"
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold text-primary transition-colors duration-200 hover:bg-primary/15"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[11px] text-primary transition-colors duration-300 ease-mola hover:bg-primary/10"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          Voltar ao site
+          <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+          voltar ao site
         </Link>
       </div>
     </div>
