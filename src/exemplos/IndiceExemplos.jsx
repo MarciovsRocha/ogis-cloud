@@ -30,7 +30,7 @@ export default function IndiceExemplos() {
 
           <div className="mt-16 grid gap-4 md:grid-cols-3">
             {EXEMPLARES.map((exemplar, i) => (
-              <Revelar key={exemplar.para} atraso={i * 90}>
+              <Revelar key={exemplar.para} atraso={i * 90} className="min-w-0">
                 <CartaoExemplar exemplar={exemplar} mostrarDetalhe />
               </Revelar>
             ))}

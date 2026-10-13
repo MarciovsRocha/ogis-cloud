@@ -22,7 +22,7 @@ export default function FaixaExemplar() {
         </span>
         <Link
           to="/"
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1 font-mono text-[11px] text-primary transition-colors duration-300 ease-mola hover:bg-primary/10"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1 font-mono text-xs text-primary transition-colors duration-300 ease-mola hover:bg-primary/10"
         >
           <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
           voltar ao site

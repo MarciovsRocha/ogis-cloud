@@ -31,12 +31,12 @@ export default function Solucoes() {
                 as="article"
                 key={sol.slug}
                 atraso={i * 80}
-                className={`group rounded-[2rem] bg-white/[0.03] p-1.5 ring-1 ring-white/10 ${POSICAO[i]}`}
+                className={`group min-w-0 rounded-[2rem] bg-white/[0.03] p-1.5 ring-1 ring-white/10 ${POSICAO[i]}`}
               >
                 <div className="flex h-full flex-col rounded-[calc(2rem-0.375rem)] bg-base-100 p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-colors duration-500 ease-mola group-hover:bg-[#181c1a] sm:p-8">
                   <div className="flex items-start justify-between gap-4">
                     <Icone weight="light" className="h-8 w-8 text-primary" aria-hidden="true" />
-                    <span className="font-mono text-[11px] text-base-content/60">0{i + 1}</span>
+                    <span className="font-mono text-xs text-base-content/60">0{i + 1}</span>
                   </div>
                   <h3
                     className={`mt-8 font-semibold tracking-[-0.03em] text-base-content ${

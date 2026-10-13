@@ -31,7 +31,7 @@ export default function Planos() {
               >
                 <div className="flex min-h-7 items-center justify-between gap-3">
                   <h3 className="text-xl font-semibold tracking-[-0.02em] text-base-content">{plano.nome}</h3>
-                  {plano.selo && <span className="font-mono text-[11px] text-primary">{plano.selo.toLowerCase()}</span>}
+                  {plano.selo && <span className="font-mono text-xs text-primary">{plano.selo.toLowerCase()}</span>}
                 </div>
                 <p className="mt-3 min-h-[3lh] text-sm text-base-content/70">{plano.resumo}</p>
                 <p className="mt-6 font-mono text-xs text-base-content/60">

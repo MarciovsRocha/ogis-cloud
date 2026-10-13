@@ -18,7 +18,7 @@ export default function LegalLayout({ title, description, path, atualizadoEm, ch
       <div className="mx-auto max-w-6xl px-5 pb-28 pt-36 lg:grid lg:grid-cols-[14rem_1fr] lg:gap-16">
         <aside className="hidden lg:block">
           <nav aria-label="Nesta página" className="sticky top-32">
-            <p className="font-mono text-[11px] text-base-content/60">nesta página</p>
+            <p className="font-mono text-xs text-base-content/60">nesta página</p>
             <ol className="mt-4 flex flex-col gap-2.5 border-l border-white/10">
               {indice.map((s) => (
                 <li key={s.id}>

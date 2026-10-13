@@ -40,7 +40,7 @@ export default function Footer() {
         </nav>
       </div>
       <div className="mx-auto max-w-6xl px-5 pb-10">
-        <p className="font-mono text-[11px] text-base-content/60">
+        <p className="font-mono text-xs text-base-content/60">
           © {ano} {BRAND.name} · {BRAND.cnpj} · {BRAND.cidade}
         </p>
       </div>

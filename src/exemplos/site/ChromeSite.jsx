@@ -53,7 +53,7 @@ export function CabecalhoSite() {
           onClick={abrir}
           aria-haspopup="dialog"
           aria-label="Abrir menu"
-          className="grid h-10 w-10 cursor-pointer place-items-center rounded-lg text-base-content md:hidden"
+          className="grid h-11 w-11 cursor-pointer place-items-center rounded-lg text-base-content md:hidden"
         >
           <List className="h-5 w-5" aria-hidden="true" />
         </button>
@@ -71,7 +71,7 @@ export function CabecalhoSite() {
             type="button"
             onClick={fechar}
             aria-label="Fechar menu"
-            className="grid h-10 w-10 cursor-pointer place-items-center rounded-lg"
+            className="grid h-11 w-11 cursor-pointer place-items-center rounded-lg"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>

@@ -93,7 +93,7 @@ export default function Navbar() {
             aria-label={aberto ? "Fechar menu" : "Abrir menu"}
             aria-expanded={aberto}
             aria-controls="menu-movel"
-            className="relative grid h-10 w-10 cursor-pointer place-items-center rounded-full ring-1 ring-white/10 md:hidden"
+            className="relative grid h-11 w-11 cursor-pointer place-items-center rounded-full ring-1 ring-white/10 md:hidden"
           >
             <span
               aria-hidden="true"
