@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { Plus, Check } from "lucide-react";
+import { Check, Plus } from "@phosphor-icons/react";
 import { useOrcamento } from "./useOrcamento.js";
 
 export default function BotaoAdicionar({ slug, quantidade = 1, observacao = "", largo = false }) {
-  const { adicionar } = useOrcamento();
+  const { adicionar, temItem } = useOrcamento();
   const [adicionado, setAdicionado] = useState(false);
   const timer = useRef(null);
 
@@ -17,30 +17,23 @@ export default function BotaoAdicionar({ slug, quantidade = 1, observacao = "", 
     timer.current = setTimeout(() => setAdicionado(false), 2000);
   }
 
+  const rotulo = adicionado ? "Adicionado" : temItem(slug) ? "Adicionar mais" : "Adicionar";
+
   return (
     <button
       type="button"
       onClick={aoClicar}
-      className={`inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
-        largo ? "w-full py-3.5 text-base" : ""
-      } ${
-        adicionado
-          ? "bg-success text-success-content"
-          : "bg-primary text-primary-content hover:-translate-y-0.5"
-      }`}
       aria-live="polite"
+      className={`inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-full font-bold transition-all duration-300 ease-mola active:scale-[0.97] ${
+        largo ? "w-full px-6 py-4 text-base" : "px-4 py-2 text-sm"
+      } ${adicionado ? "bg-success text-success-content" : "bg-secondary text-secondary-content"}`}
     >
       {adicionado ? (
-        <>
-          <Check className="h-4 w-4" />
-          Adicionado
-        </>
+        <Check weight="bold" className="h-4 w-4" aria-hidden="true" />
       ) : (
-        <>
-          <Plus className="h-4 w-4" />
-          Adicionar ao orçamento
-        </>
+        <Plus weight="bold" className="h-4 w-4" aria-hidden="true" />
       )}
+      {rotulo}
     </button>
   );
 }

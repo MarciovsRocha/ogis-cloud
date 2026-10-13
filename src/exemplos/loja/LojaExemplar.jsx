@@ -1,4 +1,5 @@
 import "@fontsource-variable/manrope";
+import "./loja.css";
 import { Routes, Route } from "react-router-dom";
 import OrcamentoProvider from "./OrcamentoProvider.jsx";
 import { CabecalhoLoja, RodapeLoja } from "./ChromeLoja.jsx";
