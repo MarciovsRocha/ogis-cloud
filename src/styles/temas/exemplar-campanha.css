@@ -1,0 +1,45 @@
+/* Exemplar landing — "Campanha cinética": osso + cobalto, Archivo 900. */
+@plugin "daisyui/theme" {
+  name: "exemplar-campanha";
+  default: false;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: #f2f1ec;
+  --color-base-200: #e8e6de;
+  --color-base-300: #d6d3c8;
+  --color-base-content: #0e1240;
+
+  --color-primary: #2734e8;
+  --color-primary-content: #f2f1ec;
+  --color-secondary: #0e1240;
+  --color-secondary-content: #f2f1ec;
+  --color-accent: #2734e8;
+  --color-accent-content: #f2f1ec;
+  --color-neutral: #0e1240;
+  --color-neutral-content: #f2f1ec;
+
+  --color-info: #2734e8;
+  --color-info-content: #f2f1ec;
+  --color-success: #1f7a4d;
+  --color-success-content: #f2f1ec;
+  --color-warning: #b45309;
+  --color-warning-content: #f2f1ec;
+  --color-error: #b42318;
+  --color-error-content: #f2f1ec;
+
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 0rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 2px;
+  --depth: 0;
+  --noise: 0;
+}
+
+[data-theme="exemplar-campanha"] {
+  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}

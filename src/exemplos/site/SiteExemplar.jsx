@@ -1,3 +1,4 @@
+import "@fontsource-variable/manrope";
 import { Routes, Route } from "react-router-dom";
 import { CabecalhoSite, RodapeSite } from "./ChromeSite.jsx";
 import SiteHome from "./SiteHome.jsx";
@@ -6,12 +7,13 @@ import SiteSolucoes from "./SiteSolucoes.jsx";
 import SiteSolucao from "./SiteSolucao.jsx";
 import SiteContato from "./SiteContato.jsx";
 import NaoEncontrado from "../NaoEncontrado.jsx";
+import Tema from "../../components/Tema.jsx";
 
 export default function SiteExemplar() {
   return (
-    <>
+    <Tema superficie="site">
       <CabecalhoSite />
-      <main>
+      <main id="conteudo">
         <Routes>
           <Route index element={<SiteHome />} />
           <Route path="sobre" element={<SiteSobre />} />
@@ -25,6 +27,6 @@ export default function SiteExemplar() {
         </Routes>
       </main>
       <RodapeSite />
-    </>
+    </Tema>
   );
 }

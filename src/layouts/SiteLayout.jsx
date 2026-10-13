@@ -1,16 +1,20 @@
 import { Outlet } from "react-router-dom";
+import Tema from "../components/Tema.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 
 // Chrome do site real da ogis.cloud.
 export default function SiteLayout() {
   return (
-    <div className="min-h-screen bg-base-200 text-base-content">
+    <Tema superficie="home">
+      <a href="#conteudo" className="pular-conteudo">
+        Pular para o conteúdo
+      </a>
       <Navbar />
-      <main>
+      <main id="conteudo">
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </Tema>
   );
 }

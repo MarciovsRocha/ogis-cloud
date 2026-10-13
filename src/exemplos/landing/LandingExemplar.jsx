@@ -1,3 +1,5 @@
+import "@fontsource-variable/archivo";
+import Tema from "../../components/Tema.jsx";
 import SEO from "../../components/SEO.jsx";
 import {
   CabecalhoLanding,
@@ -14,7 +16,7 @@ import {
 
 export default function LandingExemplar() {
   return (
-    <>
+    <Tema superficie="landing">
       <SEO
         title="Exemplar — Landing Page"
         description="Exemplar de landing page construído pela ogis.cloud: uma página, uma promessa, uma ação."
@@ -22,7 +24,7 @@ export default function LandingExemplar() {
         noindex
       />
       <CabecalhoLanding />
-      <main>
+      <main id="conteudo">
         <HeroLanding />
         <Problema />
         <Pilares />
@@ -33,6 +35,6 @@ export default function LandingExemplar() {
         <CtaFinal />
       </main>
       <RodapeLanding />
-    </>
+    </Tema>
   );
 }
