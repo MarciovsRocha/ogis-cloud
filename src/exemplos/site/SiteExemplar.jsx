@@ -1,4 +1,5 @@
 import "@fontsource-variable/manrope";
+import "./site.css";
 import { Routes, Route } from "react-router-dom";
 import { CabecalhoSite, RodapeSite } from "./ChromeSite.jsx";
 import SiteHome from "./SiteHome.jsx";

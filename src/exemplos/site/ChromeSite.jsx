@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Menu, X, Mail, MessageCircle, MapPin } from "lucide-react";
-import { BRAND, linkWhatsApp, linkEmail, MSG, ASSUNTO } from "../../config.js";
+import { ArrowRight, List, X } from "@phosphor-icons/react";
+import { BRAND, ASSUNTO, MSG, linkEmail, linkWhatsApp } from "../../config.js";
 import Wordmark from "../../components/Wordmark.jsx";
 
 const PAGINAS = [
@@ -12,25 +12,24 @@ const PAGINAS = [
 ];
 
 function classesLink({ isActive }) {
-  return `text-sm font-medium transition-colors duration-200 ${
-    isActive ? "text-primary" : "text-base-content/70 hover:text-base-content"
+  return `link-sereno text-sm transition-colors duration-300 ease-mola ${
+    isActive ? "font-bold text-base-content" : "text-base-content/70 hover:text-base-content"
   }`;
 }
 
 export function CabecalhoSite() {
-  const [aberto, setAberto] = useState(false);
+  const painelRef = useRef(null);
+  const abrir = () => painelRef.current?.showModal();
+  const fechar = () => painelRef.current?.close();
 
   return (
-    <header className="sticky top-11 z-40 border-b border-base-300 bg-base-100/85 backdrop-blur-md">
-      <nav
-        className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5"
-        aria-label="Principal"
-      >
+    <header className="sticky top-11 z-(--z-cabecalho) border-b border-base-300 bg-base-100/95 backdrop-blur-md">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4" aria-label="Principal">
         <Link to="/exemplos/site" aria-label="Início">
-          <Wordmark className="h-7" />
+          <Wordmark variante="mono" className="h-6 text-base-content" />
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-9 md:flex">
           {PAGINAS.map((p) => (
             <li key={p.para}>
               <NavLink to={p.para} end={p.exata} className={classesLink}>
@@ -40,43 +39,60 @@ export function CabecalhoSite() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-1.5">
-          <a
-            href={linkWhatsApp(MSG.contato)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden cursor-pointer rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-content transition-transform duration-200 hover:-translate-y-0.5 sm:inline-block"
-          >
-            Fale com a gente
-          </a>
-          <button
-            type="button"
-            onClick={() => setAberto((v) => !v)}
-            aria-label={aberto ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={aberto}
-            className="grid h-10 w-10 cursor-pointer place-items-center rounded-xl text-base-content/70 transition-colors duration-200 hover:bg-base-200 md:hidden"
-          >
-            {aberto ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+        <a
+          href={linkWhatsApp(MSG.contato)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-sereno hidden items-center gap-1.5 text-sm font-bold text-primary md:inline-flex"
+        >
+          Fale com a gente <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </a>
+
+        <button
+          type="button"
+          onClick={abrir}
+          aria-haspopup="dialog"
+          aria-label="Abrir menu"
+          className="grid h-10 w-10 cursor-pointer place-items-center rounded-lg text-base-content md:hidden"
+        >
+          <List className="h-5 w-5" aria-hidden="true" />
+        </button>
       </nav>
 
-      {aberto && (
-        <ul className="flex flex-col border-t border-base-300 px-3 py-2 md:hidden">
+      {/* <dialog> modal: prende o foco, fecha com Esc e devolve o foco ao botão. */}
+      <dialog
+        ref={painelRef}
+        aria-label="Menu"
+        className="painel-site m-0 ml-auto h-dvh max-h-dvh w-[min(22rem,85vw)] max-w-none bg-base-100 p-6 text-base-content"
+      >
+        <div className="flex items-center justify-between">
+          <Wordmark variante="mono" className="h-6" />
+          <button
+            type="button"
+            onClick={fechar}
+            aria-label="Fechar menu"
+            className="grid h-10 w-10 cursor-pointer place-items-center rounded-lg"
+          >
+            <X className="h-5 w-5" aria-hidden="true" />
+          </button>
+        </div>
+        <ul className="mt-10 flex flex-col">
           {PAGINAS.map((p) => (
-            <li key={p.para}>
+            <li key={p.para} className="border-b border-base-300">
               <NavLink
                 to={p.para}
                 end={p.exata}
-                onClick={() => setAberto(false)}
-                className="block rounded-xl px-4 py-3 text-sm font-medium text-base-content/80 transition-colors duration-200 hover:bg-base-200"
+                onClick={fechar}
+                className={({ isActive }) =>
+                  `block py-4 text-2xl tracking-[-0.02em] ${isActive ? "font-bold" : "font-medium text-base-content/75"}`
+                }
               >
                 {p.rotulo}
               </NavLink>
             </li>
           ))}
         </ul>
-      )}
+      </dialog>
     </header>
   );
 }
@@ -85,65 +101,34 @@ export function RodapeSite() {
   const ano = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-base-300 bg-base-100">
-      <div className="mx-auto max-w-6xl px-5 py-14">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
-          <div>
-            <Wordmark className="h-8" />
-            <p className="mt-4 max-w-xs text-sm text-base-content/70">{BRAND.tagline}</p>
-            <p className="mt-4 inline-flex items-center gap-2 text-sm text-base-content/60">
-              <MapPin className="h-4 w-4" />
-              {BRAND.cidade}
-            </p>
-          </div>
-
-          <nav aria-label="Mapa do site">
-            <h2 className="text-sm font-semibold text-base-content">Mapa do site</h2>
-            <ul className="mt-4 flex flex-col gap-2.5">
-              {PAGINAS.map((p) => (
-                <li key={p.para}>
-                  <Link
-                    to={p.para}
-                    className="text-sm text-base-content/70 transition-colors duration-200 hover:text-primary"
-                  >
-                    {p.rotulo}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div>
-            <h2 className="text-sm font-semibold text-base-content">Fale com a gente</h2>
-            <ul className="mt-4 flex flex-col gap-2.5">
-              <li>
-                <a
-                  href={linkWhatsApp(MSG.contato)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-base-content/70 transition-colors duration-200 hover:text-primary"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  WhatsApp
-                </a>
-              </li>
-              <li>
-                <a
-                  href={linkEmail(ASSUNTO.contato, MSG.contato)}
-                  className="inline-flex items-center gap-2 text-sm text-base-content/70 transition-colors duration-200 hover:text-primary"
-                >
-                  <Mail className="h-4 w-4" />
-                  {BRAND.email}
-                </a>
-              </li>
-            </ul>
-          </div>
+    <footer className="border-t border-base-300 bg-base-200">
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-2">
+        <div>
+          <Wordmark variante="mono" className="h-6" />
+          <p className="mt-4 max-w-xs text-sm text-base-content/70">{BRAND.tagline}</p>
+          <p className="mt-6 text-sm text-base-content/70">
+            {BRAND.cidade} · atendimento remoto para todo o Brasil
+            <br />
+            <a href={linkEmail(ASSUNTO.contato, MSG.contato)} className="link-sereno">
+              {BRAND.email}
+            </a>
+          </p>
         </div>
-
-        <p className="mt-12 border-t border-base-300 pt-6 text-xs text-base-content/50">
-          © {ano} {BRAND.name} · Exemplar de site institucional construído pela ogis.cloud
-        </p>
+        <nav aria-label="Mapa do site">
+          <ul className="grid grid-cols-2 gap-3 text-sm">
+            {PAGINAS.map((p) => (
+              <li key={p.para}>
+                <Link to={p.para} className="link-sereno text-base-content/75 hover:text-base-content">
+                  {p.rotulo}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
+      <p className="mx-auto max-w-6xl border-t border-base-300 px-5 py-6 text-xs text-base-content/70">
+        © {ano} {BRAND.name} · Exemplar de site institucional construído pela ogis.cloud
+      </p>
     </footer>
   );
 }
