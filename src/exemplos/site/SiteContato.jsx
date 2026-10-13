@@ -1,25 +1,54 @@
 import { useState } from "react";
-import { MessageCircle, Mail, MapPin, ArrowRight } from "lucide-react";
-import { BRAND, linkWhatsApp, linkEmail, MSG, ASSUNTO } from "../../config.js";
+import { ArrowRight } from "@phosphor-icons/react";
+import { BRAND, ASSUNTO, MSG, linkEmail, linkWhatsApp } from "../../config.js";
 import SEO from "../../components/SEO.jsx";
+import { abrirExterno } from "../../lib/abrirExterno.js";
+import { validarContato, textoContato } from "./validacaoContato.js";
+
+const CAMPOS = ["nome", "empresa", "mensagem"];
+
+const CLASSE_CAMPO =
+  "w-full rounded-xl bg-base-200 px-4 py-3 text-base text-base-content outline-none ring-1 ring-transparent transition-shadow duration-300 ease-mola placeholder:text-base-content/50 focus:ring-primary aria-[invalid=true]:ring-error";
 
 export default function SiteContato() {
   const [form, setForm] = useState({ nome: "", empresa: "", mensagem: "" });
+  const [erros, setErros] = useState({});
 
-  const alterar = (campo) => (evento) =>
-    setForm((atual) => ({ ...atual, [campo]: evento.target.value }));
+  function alterar(campo) {
+    return (evento) => {
+      setForm((atual) => ({ ...atual, [campo]: evento.target.value }));
+      if (erros[campo]) {
+        setErros((atual) => {
+          const proximo = { ...atual };
+          delete proximo[campo];
+          return proximo;
+        });
+      }
+    };
+  }
 
-  const texto = [
-    "Olá! Vim pelo site da ogis.cloud.",
-    form.nome && `Nome: ${form.nome}`,
-    form.empresa && `Empresa: ${form.empresa}`,
-    form.mensagem && `Mensagem: ${form.mensagem}`,
-  ]
-    .filter(Boolean)
-    .join("\n");
+  function enviar(evento) {
+    evento.preventDefault();
+    const encontrados = validarContato(form);
+    setErros(encontrados);
+    const primeiro = CAMPOS.find((campo) => encontrados[campo]);
+    if (primeiro) {
+      document.getElementById(`contato-${primeiro}`)?.focus();
+      return;
+    }
+    abrirExterno(linkWhatsApp(textoContato(form)));
+  }
 
-  const campo =
-    "w-full rounded-xl border border-base-300 bg-base-100 px-4 py-3 text-sm text-base-content outline-none transition-colors duration-200 placeholder:text-base-content/40 focus:border-primary";
+  function propsCampo(campo) {
+    return {
+      id: `contato-${campo}`,
+      value: form[campo],
+      onChange: alterar(campo),
+      "aria-invalid": Boolean(erros[campo]),
+      "aria-describedby": erros[campo] ? `contato-${campo}-erro` : undefined,
+      className: CLASSE_CAMPO,
+    };
+  }
 
   return (
     <>
@@ -31,105 +60,72 @@ export default function SiteContato() {
       />
 
       <section id="contato" className="bg-base-100 py-20 sm:py-28">
-        <div className="mx-auto grid max-w-5xl gap-14 px-5 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl gap-16 px-5 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <h1 className="text-4xl font-bold text-base-content sm:text-5xl">Fale com a gente</h1>
-            <p className="mt-6 text-lg text-base-content/70">
+            <h1 className="text-4xl font-bold tracking-[-0.035em] text-base-content sm:text-5xl">Fale com a gente</h1>
+            <p className="mt-6 max-w-[48ch] text-lg text-base-content/75">
               Conte o que está acontecendo hoje no seu negócio. Respondemos no mesmo dia útil.
             </p>
 
-            <ul className="mt-10 flex flex-col gap-5">
-              <li>
-                <a
-                  href={linkWhatsApp(MSG.contato)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 rounded-2xl border border-base-300 bg-base-200 p-5 transition-colors duration-200 hover:border-primary/40"
-                >
-                  <MessageCircle className="h-5 w-5 shrink-0 text-primary" />
-                  <span>
-                    <span className="block font-semibold text-base-content">WhatsApp</span>
-                    <span className="block text-sm text-base-content/60">
-                      O canal mais rápido para falar conosco
-                    </span>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={linkEmail(ASSUNTO.contato, MSG.contato)}
-                  className="flex items-center gap-4 rounded-2xl border border-base-300 bg-base-200 p-5 transition-colors duration-200 hover:border-primary/40"
-                >
-                  <Mail className="h-5 w-5 shrink-0 text-primary" />
-                  <span>
-                    <span className="block font-semibold text-base-content">E-mail</span>
-                    <span className="block text-sm text-base-content/60">{BRAND.email}</span>
-                  </span>
-                </a>
-              </li>
-              <li className="flex items-center gap-4 rounded-2xl border border-base-300 p-5">
-                <MapPin className="h-5 w-5 shrink-0 text-accent" />
-                <span>
-                  <span className="block font-semibold text-base-content">Onde estamos</span>
-                  <span className="block text-sm text-base-content/60">
-                    {BRAND.cidade} · atendimento remoto para todo o Brasil
-                  </span>
-                </span>
-              </li>
-            </ul>
+            <dl className="mt-12 border-t border-base-300">
+              <div className="border-b border-base-300 py-5">
+                <dt className="text-sm font-bold text-base-content">WhatsApp</dt>
+                <dd className="mt-1">
+                  <a href={linkWhatsApp(MSG.contato)} target="_blank" rel="noopener noreferrer" className="link-sereno text-primary">
+                    O canal mais rápido para falar conosco
+                  </a>
+                </dd>
+              </div>
+              <div className="border-b border-base-300 py-5">
+                <dt className="text-sm font-bold text-base-content">E-mail</dt>
+                <dd className="mt-1">
+                  <a href={linkEmail(ASSUNTO.contato, MSG.contato)} className="link-sereno text-primary">
+                    {BRAND.email}
+                  </a>
+                </dd>
+              </div>
+              <div className="border-b border-base-300 py-5">
+                <dt className="text-sm font-bold text-base-content">Onde estamos</dt>
+                <dd className="mt-1 text-base-content/75">{BRAND.cidade} · atendimento remoto para todo o Brasil</dd>
+              </div>
+            </dl>
           </div>
 
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="flex flex-col gap-4 rounded-2xl border border-base-300 bg-base-200 p-7"
-          >
-            <h2 className="text-lg font-semibold text-base-content">Prefere escrever?</h2>
-            <p className="-mt-2 text-sm text-base-content/60">
-              Preencha e continue a conversa no WhatsApp, com tudo já escrito.
-            </p>
+          <form noValidate onSubmit={enviar} className="flex flex-col gap-6 rounded-2xl bg-base-200/60 p-7 sm:p-9">
+            <div>
+              <h2 className="text-xl font-bold tracking-[-0.02em] text-base-content">Prefere escrever?</h2>
+              <p className="mt-1 text-sm text-base-content/70">
+                Preencha e continue a conversa no WhatsApp, com tudo já escrito.
+              </p>
+            </div>
 
-            <label className="flex flex-col gap-1.5">
-              <span className="text-sm font-medium text-base-content/80">Seu nome</span>
-              <input
-                type="text"
-                value={form.nome}
-                onChange={alterar("nome")}
-                placeholder="Como podemos te chamar"
-                className={campo}
-              />
-            </label>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="contato-nome" className="text-sm font-bold text-base-content">Seu nome</label>
+              <input type="text" autoComplete="name" placeholder="Como podemos te chamar" {...propsCampo("nome")} />
+              {erros.nome && <p id="contato-nome-erro" className="text-sm font-medium text-error">{erros.nome}</p>}
+            </div>
 
-            <label className="flex flex-col gap-1.5">
-              <span className="text-sm font-medium text-base-content/80">Empresa</span>
-              <input
-                type="text"
-                value={form.empresa}
-                onChange={alterar("empresa")}
-                placeholder="Nome do seu negócio"
-                className={campo}
-              />
-            </label>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="contato-empresa" className="text-sm font-bold text-base-content">
+                Empresa <span className="font-normal text-base-content/60">(opcional)</span>
+              </label>
+              <input type="text" autoComplete="organization" placeholder="Nome do seu negócio" {...propsCampo("empresa")} />
+            </div>
 
-            <label className="flex flex-col gap-1.5">
-              <span className="text-sm font-medium text-base-content/80">Mensagem</span>
-              <textarea
-                rows={4}
-                value={form.mensagem}
-                onChange={alterar("mensagem")}
-                placeholder="O que está acontecendo hoje?"
-                className={`${campo} resize-y`}
-              />
-            </label>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="contato-mensagem" className="text-sm font-bold text-base-content">Mensagem</label>
+              <textarea rows={5} placeholder="O que está acontecendo hoje?" {...propsCampo("mensagem")} />
+              {erros.mensagem && (
+                <p id="contato-mensagem-erro" className="text-sm font-medium text-error">{erros.mensagem}</p>
+              )}
+            </div>
 
-            <a
-              href={linkWhatsApp(texto)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-sm font-semibold text-primary-content transition-transform duration-200 hover:-translate-y-0.5"
+            <button
+              type="submit"
+              className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-neutral px-6 py-3.5 text-sm font-bold text-neutral-content transition-transform duration-300 ease-mola active:scale-[0.98]"
             >
-              Continuar no WhatsApp
-              <ArrowRight className="h-4 w-4" />
-            </a>
+              Continuar no WhatsApp <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </button>
           </form>
         </div>
       </section>
