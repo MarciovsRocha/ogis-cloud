@@ -6,4 +6,6 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [tailwindcss(), react(), cloudflare()],
+  // O manifest permite verificar o que entra no bundle da home (scripts/verificar-bundle.mjs).
+  build: { manifest: true },
 });

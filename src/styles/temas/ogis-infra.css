@@ -1,0 +1,45 @@
+/* Marca da holding — "Infraestrutura noturna": grafite + verde-sinal. */
+@plugin "daisyui/theme" {
+  name: "ogis-infra";
+  default: true;
+  prefersdark: false;
+  color-scheme: dark;
+
+  --color-base-100: #141716;
+  --color-base-200: #0d0f0e;
+  --color-base-300: #222725;
+  --color-base-content: #e8ece9;
+
+  --color-primary: #b8f25b;
+  --color-primary-content: #0d0f0e;
+  --color-secondary: #e8ece9;
+  --color-secondary-content: #0d0f0e;
+  --color-accent: #b8f25b;
+  --color-accent-content: #0d0f0e;
+  --color-neutral: #1b201e;
+  --color-neutral-content: #c9d0cc;
+
+  --color-info: #7dd3fc;
+  --color-info-content: #0d0f0e;
+  --color-success: #b8f25b;
+  --color-success-content: #0d0f0e;
+  --color-warning: #facc15;
+  --color-warning-content: #0d0f0e;
+  --color-error: #f87171;
+  --color-error-content: #0d0f0e;
+
+  --radius-selector: 1rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+[data-theme="ogis-infra"] {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+}

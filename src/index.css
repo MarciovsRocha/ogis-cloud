@@ -1,118 +1,124 @@
 @import "tailwindcss";
+@import "./styles/temas/ogis-infra.css";
+@import "./styles/temas/exemplar-campanha.css";
+@import "./styles/temas/exemplar-sereno.css";
+@import "./styles/temas/exemplar-bento.css";
 @plugin "daisyui";
 
 /* =========================================================================
-   ogis.cloud — Identidade "Premium Dark + Gold"
-   Paleta: stone (tinta) + ouro (#CA8A04). Tipografia: Poppins / Open Sans.
-   Distinta da paleta corporativa teal (ogis-corp) usada no ogis-manager.
+   ogis.cloud — base comum a todas as superfícies.
+   Cores e fontes vêm do tema ativo (data-theme); ver src/styles/temas.js.
    ========================================================================= */
 
-@theme {
-  --font-sans: "Open Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
+@theme static {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ease-mola: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-/* --------------------- Tema único: ogis-dark ---------------------------- */
-@plugin "daisyui/theme" {
-  name: "ogis-dark";
-  default: true;
-  prefersdark: true;
-  color-scheme: "dark";
-
-  --color-base-100: #1c1917; /* superfícies (stone-900) */
-  --color-base-200: #0c0a09; /* fundo da página (stone-950) */
-  --color-base-300: #292524; /* bordas (stone-800) */
-  --color-base-content: #fafaf9; /* texto (stone-50) */
-
-  --color-primary: #eab308; /* ouro mais claro para contraste no escuro */
-  --color-primary-content: #1c1917;
-
-  --color-secondary: #fafaf9; /* botão claro sobre fundo escuro */
-  --color-secondary-content: #1c1917;
-
-  --color-accent: #fbbf24; /* âmbar-400 — links/ícones em fundo escuro */
-  --color-accent-content: #1c1917;
-
-  --color-neutral: #0c0a09;
-  --color-neutral-content: #a8a29e;
-
-  --color-info: #38bdf8;
-  --color-info-content: #0c0a09;
-  --color-success: #22c55e;
-  --color-success-content: #0c0a09;
-  --color-warning: #fbbf24;
-  --color-warning-content: #0c0a09;
-  --color-error: #f87171;
-  --color-error-content: #0c0a09;
-
-  --radius-selector: 0.5rem;
-  --radius-field: 0.625rem;
-  --radius-box: 1rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 0;
-  --noise: 0;
+:root {
+  --z-conteudo: 1;
+  --z-cabecalho: 40;
+  --z-faixa: 50;
+  --z-menu: 60;
 }
 
-/* ------------------------------ Base ------------------------------------ */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--font-sans);
-}
-
-h1,
-h2,
-h3,
-h4,
-.font-display {
-  font-family: var(--font-display);
-  letter-spacing: -0.02em;
-}
-
-/* Compensa a navbar fixa ao rolar para uma âncora */
-section[id] {
-  scroll-margin-top: 84px;
-}
-
-/* Brilho dourado sutil reutilizável (hero, CTA) */
-.glow-gold {
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-primary) 25%, transparent),
-    0 18px 60px -20px color-mix(in oklab, var(--color-primary) 55%, transparent);
-}
-
-/* Gradiente de texto dourado para destaques do título */
-.text-gradient-gold {
-  background: linear-gradient(120deg, var(--color-primary), var(--color-accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Entrada suave das seções */
-@keyframes riseIn {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  /* O tema troca as variáveis de fonte; quem tem data-theme precisa reaplicá-las. */
+  [data-theme] {
+    font-family: var(--font-sans);
+    background-color: var(--color-base-200);
+    color: var(--color-base-content);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  /* Compensa cabeçalhos fixos ao rolar para uma âncora. */
+  section[id] {
+    scroll-margin-top: 96px;
   }
 }
 
-.animate-rise {
-  animation: riseIn 0.6s ease-out both;
+/* Menu mobile da home aberto: trava a rolagem só onde o menu existe (< 768px). */
+@media (max-width: 767.98px) {
+  html.menu-aberto {
+    overflow: hidden;
+  }
+}
+
+/* Link "pular para o conteúdo": invisível até receber foco. */
+.pular-conteudo {
+  position: fixed;
+  left: 1rem;
+  top: 0.75rem;
+  z-index: var(--z-menu);
+  transform: translateY(-200%);
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  background: var(--color-primary);
+  color: var(--color-primary-content);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform 0.3s var(--ease-mola);
+}
+
+.pular-conteudo:focus {
+  transform: translateY(0);
+}
+
+/* Entrada ao rolar — ver src/hooks/useRevelar.js e src/components/Revelar.jsx. */
+.revelar {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(6px);
+  transition:
+    opacity 0.8s var(--ease-mola),
+    transform 0.8s var(--ease-mola),
+    filter 0.8s var(--ease-mola);
+  transition-delay: var(--atraso, 0ms);
+}
+
+.revelar.revelado {
+  opacity: 1;
+  transform: none;
+  filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .animate-rise {
-    animation: none;
+
+  .revelar {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
   }
 }

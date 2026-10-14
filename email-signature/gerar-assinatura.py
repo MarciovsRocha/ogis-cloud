@@ -21,10 +21,9 @@ from PIL import Image, ImageDraw
 
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# --- Cores da identidade "Premium Dark + Gold" da ogis.cloud ---
-TILE = (28, 25, 23, 255)         # #1c1917  (tile do badge)
-GOLD = (202, 138, 4, 255)        # #ca8a04  (anel)
-GOLD_LIGHT = (234, 179, 8, 255)  # #eab308  (ponto)
+# --- Cores da identidade "Infraestrutura noturna" da ogis.cloud ---
+TILE = (13, 15, 14, 255)      # #0d0f0e  (tile do badge)
+SINAL = (184, 242, 91, 255)   # #b8f25b  (anel e ponto)
 
 
 def gerar_logo(size: int = 256, scale: int = 4) -> str:
@@ -44,11 +43,11 @@ def gerar_logo(size: int = 256, scale: int = 4) -> str:
     # Anel (ring) — cx=0.42, cy=0.53, r=0.20, espessura=0.095 (normalizado)
     cx, cy, r = s * 0.42, s * 0.53, s * 0.20
     espessura = max(1, int(s * 0.095))
-    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=GOLD, width=espessura)
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=SINAL, width=espessura)
 
     # Ponto (dot) — lower-right do anel
     dx, dy, dr = s * 0.73, s * 0.655, s * 0.078
-    d.ellipse([dx - dr, dy - dr, dx + dr, dy + dr], fill=GOLD_LIGHT)
+    d.ellipse([dx - dr, dy - dr, dx + dr, dy + dr], fill=SINAL)
 
     img = img.resize((size, size), Image.LANCZOS)
     caminho = os.path.join(OUT_DIR, "logo-mark.png")
@@ -66,7 +65,7 @@ def base64_de(caminho: str) -> str:
 # ficam entre [colchetes] para você substituir.
 HTML = """<!-- ============================================================ -->
 <!-- ASSINATURA DE E-MAIL - OGIS.CLOUD                            -->
-<!-- Identidade: fundo asfalto (#0c0a09) + ouro (#ca8a04/#eab308) -->
+<!-- Identidade: grafite (#0d0f0e) + verde-sinal (#b8f25b) -->
 <!-- Logo EMBUTIDA (base64) - nao depende de link externo.        -->
 <!--                                                              -->
 <!-- COMO USAR:                                                   -->
@@ -75,13 +74,13 @@ HTML = """<!-- ============================================================ -->
 <!-- Gerado por email-signature/gerar-assinatura.py               -->
 <!-- ============================================================ -->
 
-<table cellpadding="0" cellspacing="0" border="0" style="background-color: #0c0a09; border-radius: 12px; border: 1px solid #292524; font-family: Arial, Helvetica, sans-serif;">
+<table cellpadding="0" cellspacing="0" border="0" style="background-color: #0d0f0e; border-radius: 12px; border: 1px solid #222725; font-family: Arial, Helvetica, sans-serif;">
   <tr>
     <td style="padding: 18px 22px;">
       <table cellpadding="0" cellspacing="0" border="0">
         <tr>
           <!-- LOGO (embutida em base64) -->
-          <td style="vertical-align: middle; padding-right: 20px; border-right: 2px solid #eab308;">
+          <td style="vertical-align: middle; padding-right: 20px; border-right: 2px solid #b8f25b;">
             <img src="data:image/png;base64,{b64}"
                  alt="ogis.cloud"
                  width="72"
@@ -90,30 +89,30 @@ HTML = """<!-- ============================================================ -->
 
           <!-- DADOS -->
           <td style="vertical-align: middle; padding-left: 20px;">
-            <div style="font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; color: #fafaf9; letter-spacing: 0.2px;">
-              <a href="https://ogis.cloud" style="color: #fafaf9; text-decoration: none;">ogis<span style="color: #eab308;">.cloud</span></a>
+            <div style="font-family: 'Geist Mono', 'Courier New', monospace; font-size: 18px; font-weight: bold; color: #e8ece9; letter-spacing: 0.2px;">
+              <a href="https://ogis.cloud" style="color: #e8ece9; text-decoration: none;">ogis<span style="color: #b8f25b;">.cloud</span></a>
             </div>
 
-            <div style="font-size: 15px; font-weight: bold; color: #e7e5e4; padding-top: 6px;">
+            <div style="font-size: 15px; font-weight: bold; color: #e8ece9; padding-top: 6px;">
               [Marcio Rocha]
             </div>
 
-            <div style="font-size: 12px; color: #eab308; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; padding-top: 2px; padding-bottom: 12px;">
+            <div style="font-size: 12px; color: #b8f25b; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; padding-top: 2px; padding-bottom: 12px;">
               [Desenvolvedor Full-Stack &amp; Arquiteto de Software]
             </div>
 
-            <div style="font-size: 13px; color: #d6d3d1; padding-bottom: 4px;">
-              <span style="color: #eab308;">&#9993;</span>&nbsp;
-              <a href="mailto:[contato@ogis.cloud]" style="color: #d6d3d1; text-decoration: none;">[contato@ogis.cloud]</a>
+            <div style="font-size: 13px; color: #c9d0cc; padding-bottom: 4px;">
+              <span style="color: #b8f25b;">&#9993;</span>&nbsp;
+              <a href="mailto:[contato@ogis.cloud]" style="color: #c9d0cc; text-decoration: none;">[contato@ogis.cloud]</a>
             </div>
 
-            <div style="font-size: 13px; color: #d6d3d1; padding-bottom: 4px;">
-              <span style="color: #eab308;">&#9742;</span>&nbsp;
-              <a href="tel:+5541999999999" style="color: #d6d3d1; text-decoration: none;">[+55 (41) 99999-9999]</a>
+            <div style="font-size: 13px; color: #c9d0cc; padding-bottom: 4px;">
+              <span style="color: #b8f25b;">&#9742;</span>&nbsp;
+              <a href="tel:+5541999999999" style="color: #c9d0cc; text-decoration: none;">[+55 (41) 99999-9999]</a>
             </div>
 
-            <div style="font-size: 13px; color: #d6d3d1;">
-              <span style="color: #eab308; font-weight: bold;">&#9873;</span>&nbsp;
+            <div style="font-size: 13px; color: #c9d0cc;">
+              <span style="color: #b8f25b; font-weight: bold;">&#9873;</span>&nbsp;
               [Curitiba, PR &mdash; Brasil]
             </div>
           </td>

@@ -1,0 +1,22 @@
+/* Exemplar loja — pulo do contador do orçamento. */
+@keyframes pulo {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.contador-pulo {
+  animation: pulo 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contador-pulo {
+    animation: none;
+  }
+}

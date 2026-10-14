@@ -1,0 +1,45 @@
+/* Exemplar loja — "Bento colorido": creme, café e uma cor por categoria. */
+@plugin "daisyui/theme" {
+  name: "exemplar-bento";
+  default: false;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: #fff7ec;
+  --color-base-200: #ffefd9;
+  --color-base-300: #f2dcc0;
+  --color-base-content: #2a1a0e;
+
+  --color-primary: #ff7a3d;
+  --color-primary-content: #2a1a0e;
+  --color-secondary: #2a1a0e;
+  --color-secondary-content: #fff7ec;
+  --color-accent: #ffd249;
+  --color-accent-content: #2a1a0e;
+  --color-neutral: #2a1a0e;
+  --color-neutral-content: #fff7ec;
+
+  --color-info: #2f5d8a;
+  --color-info-content: #fff7ec;
+  --color-success: #1f7a4d;
+  --color-success-content: #fff7ec;
+  --color-warning: #9a5b00;
+  --color-warning-content: #fff7ec;
+  --color-error: #b42318;
+  --color-error-content: #fff7ec;
+
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1.75rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+[data-theme="exemplar-bento"] {
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}

@@ -1,13 +1,11 @@
 import SEO from "../components/SEO.jsx";
-import Hero from "../components/Hero.jsx";
-import Solucoes from "../components/Solucoes.jsx";
-import ComoFunciona from "../components/ComoFunciona.jsx";
-import Planos from "../components/Planos.jsx";
-import ParaQuem from "../components/ParaQuem.jsx";
-import Confianca from "../components/Confianca.jsx";
-import VejaFuncionando from "../components/VejaFuncionando.jsx";
-import CTAFinal from "../components/CTAFinal.jsx";
-import Contato from "../components/Contato.jsx";
+import Hero from "../components/home/Hero.jsx";
+import Solucoes from "../components/home/Solucoes.jsx";
+import ComoFunciona from "../components/home/ComoFunciona.jsx";
+import VejaFuncionando from "../components/home/VejaFuncionando.jsx";
+import Planos from "../components/home/Planos.jsx";
+import ParaQuemConfianca from "../components/home/ParaQuemConfianca.jsx";
+import Contato from "../components/home/Contato.jsx";
 
 export default function LandingPage() {
   return (
@@ -16,11 +14,9 @@ export default function LandingPage() {
       <Hero />
       <Solucoes />
       <ComoFunciona />
-      <Planos />
-      <ParaQuem />
-      <Confianca />
       <VejaFuncionando />
-      <CTAFinal />
+      <Planos />
+      <ParaQuemConfianca />
       <Contato />
     </>
   );
